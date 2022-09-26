@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Healthcare": {
+      "commandName": "Project",
+      "commandLineArgs": "hospitalNew.json"
+    }
+  }
+}
