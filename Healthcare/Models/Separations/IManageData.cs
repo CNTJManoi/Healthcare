@@ -8,4 +8,5 @@ internal interface IManageData
     void AddPatient(Patient pt);
     void DismissDoctor(Doctor dt);
     void DischargePatient(Patient pt);
+    Record AddRecord(Doctor doctor, Patient pt, DateTime dt);
 }

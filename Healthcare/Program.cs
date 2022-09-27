@@ -8,7 +8,7 @@ internal class Program
     private static void Main(string[] args)
     {
         Hospital? hp;
-        if (args.Count() != 1)
+        if (args.Count() != 2)
         {
             Console.WriteLine("Недостаточно аргументов командной строки!");
             return;
@@ -24,7 +24,7 @@ internal class Program
             return;
         }
 
-        var hm = new HospitalMenu(hp);
+        var hm = new HospitalMenu(hp, args[1]);
         hm.Start();
     }
 }

@@ -19,17 +19,17 @@ internal class Reception
     public IEnumerable<Record> BookRecords => _bookRecords;
     public event EventHandler Message;
 
-    public bool RegistrationRecord(Doctor doctor, Patient patient, DateTime time, IDataDepartment department)
+    public bool RegistrationRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
     {
         if (time.Minute % 15 != 0)
         {
-            ThrowNewError("Можно записаться лишь на 0, 15, 30, 45 минуты часа...");
+            PrintMessage("Можно записаться лишь на 0, 15, 30, 45 минуты часа...");
             return false;
         }
 
         if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
         {
-            ThrowNewError("Выбрано не рабочее время врача!");
+            PrintMessage("Выбрано не рабочее время врача!");
             return false;
         }
 
@@ -37,45 +37,35 @@ internal class Reception
             0
             || _bookRecords.Where(x => x.ResponsibleDoctor == doctor && x.RecordingTime == time).Count() == 0)
         {
-            foreach (var cabinet in department.Cabinets)
-                if (cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor))
-                {
-                    _bookRecords.Add(new Record(doctor, patient, time, cabinet));
-                    ThrowNewError("Запись создана!");
-                    using (var sw = new StreamWriter(_path))
-                    {
-                        sw.WriteLine("Врач " + _bookRecords.Last().ResponsibleDoctor.FullName + " у пациента " +
-                                     _bookRecords.Last().RegisteredPatient.FullName + " в "
-                                     + _bookRecords.Last().RecordingTime.Hour + ":" +
-                                     _bookRecords.Last().RecordingTime.Minute + " в кабинете номер " +
-                                     _bookRecords.Last().AttachedCabinet.Number);
-                    }
+            var record = department.AddRecord(doctor, patient, time);
+            if (record != null)
+            {
+                _bookRecords.Add(record);
+                PrintMessage("Запись создана!");
+                return true;
+            }
 
-                    return true;
-                }
-        }
-        else
-        {
-            ThrowNewError("Выберите другое время!");
+            PrintMessage("Все кабинеты заняты!");
             return false;
         }
 
-        ThrowNewError("Все кабинеты заняты!");
+        PrintMessage("Выберите другое время!");
         return false;
     }
 
     public string RecordsInBook()
     {
         var str = "";
-        foreach (var record in _bookRecords) str += "Врач " + record.ResponsibleDoctor.FullName + " у пациента " +
-                                                    record.RegisteredPatient.FullName + " в "
-                                                    + record.RecordingTime.Hour + ":" +
-                                                    record.RecordingTime.Minute + " в кабинете номер " +
-                                                    record.AttachedCabinet.Number + "\n";
+        foreach (var record in _bookRecords)
+            str += "Врач " + record.ResponsibleDoctor.FullName + " у пациента " +
+                   record.RegisteredPatient.FullName + " в "
+                   + record.RecordingTime.Hour + ":" +
+                   record.RecordingTime.Minute + " в кабинете номер " +
+                   record.AttachedCabinet.Number + "\n";
         return str;
     }
 
-    private void ThrowNewError(string text)
+    private void PrintMessage(string text)
     {
         if (Message != null) Message.Invoke(this, new AddingNewEventArgs(text));
     }

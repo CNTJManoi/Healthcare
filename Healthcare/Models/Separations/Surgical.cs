@@ -51,4 +51,12 @@ internal class Surgical : IDataDepartment, IManageData
     {
         _patients.Remove(pt);
     }
+
+    public Record AddRecord(Doctor doctor, Patient pt, DateTime dt)
+    {
+        foreach (var cabinet in Cabinets)
+            if (cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor))
+                return new Record(doctor, pt, dt, cabinet);
+        return null;
+    }
 }

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using Healthcare.Json;
 using Healthcare.Models;
+using Healthcare.Models.Separations;
 
 namespace Healthcare.Menu;
 
@@ -7,18 +9,20 @@ internal class HospitalMenu
 {
     private bool _isContinue;
 
-    public HospitalMenu(Hospital? hp)
+    public HospitalMenu(Hospital? hp, string path)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
         CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12");
         OptionsMenu = new List<OptionMenu>();
         _isContinue = true;
         Hospital.ReceptionHospital.Message += PrintMessage;
+        PathFile = path;
     }
 
     private Hospital? Hospital { get; }
     private Patient CurrentPatient { get; }
     private List<OptionMenu> OptionsMenu { get; }
+    private string PathFile { get; }
 
     public void Start()
     {
@@ -41,31 +45,36 @@ internal class HospitalMenu
     private void Prepare()
     {
         OptionsMenu.Add(new OptionMenu(() =>
-            Enroll()));
+            Enroll(), "Записаться к врачу"));
         OptionsMenu.Add(new OptionMenu(() =>
             Console.WriteLine(GetAllDoctors()
-            )));
+            ), "Посмотреть врачей больницы"));
         OptionsMenu.Add(new OptionMenu(() =>
             Console.WriteLine(Hospital.GetPatientsList()
-            )));
+            ), "Посмотреть пациентов больницы"));
         OptionsMenu.Add(new OptionMenu(() =>
-            Console.WriteLine(Hospital.ReceptionHospital.RecordsInBook())));
+            Console.WriteLine(Hospital.ReceptionHospital.RecordsInBook()), "Посмотреть книгу записей"));
         OptionsMenu.Add(new OptionMenu(() =>
-            Console.WriteLine(Hospital.GetDepartmentsInfo())));
+            Console.WriteLine(Hospital.GetDepartmentsInfo()), "Информация об отделениях"));
+        OptionsMenu.Add(new OptionMenu(WrtieInFile, "Записать данные о записях в файл"));
+
+        //using (var sw = new StreamWriter(_path))
+        //{
+        //    sw.WriteLine("Врач " + _bookRecords.Last().ResponsibleDoctor.FullName + " у пациента " +
+        //                 _bookRecords.Last().RegisteredPatient.FullName + " в "
+        //                 + _bookRecords.Last().RecordingTime.Hour + ":" +
+        //                 _bookRecords.Last().RecordingTime.Minute + " в кабинете номер " +
+        //                 _bookRecords.Last().AttachedCabinet.Number);
+        //}
         OptionsMenu.Add(new OptionMenu(() =>
-            _isContinue = false));
+            _isContinue = false, "Выйти"));
     }
 
     private void PrintMainInfo()
     {
-        Console.WriteLine("Добро пожаловать в больницу " + Hospital.Name + "\n" +
-                          "Выберите опцию..." + "\n" +
-                          "1 - Записаться к врачу" + "\n" +
-                          "2 - Посмотреть врачей больницы" + "\n" +
-                          "3 - Посмотреть пациентов больницы" + "\n" +
-                          "4 - Посмотреть книгу записей" + "\n" +
-                          "5 - Информацию об отделениях" + "\n" +
-                          "6 - Выйти");
+        Console.WriteLine("Добро пожаловать в больницу " + Hospital.Name + "\n");
+        var i = 0;
+        foreach (var Option in OptionsMenu) Console.WriteLine(++i + ") " + Option.Text);
     }
 
     private int ChooseOption()
@@ -115,13 +124,8 @@ internal class HospitalMenu
         var timeM = ChooseOption(0, 60);
         var dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, timeH, timeM, 0);
         var result = Hospital.ReceptionHospital.RegistrationRecord(selectedDoctor, CurrentPatient, dt,
-            Hospital.Building.ToList()[numberDepartment - 1]);
-        if (result)
-        {
-            Hospital.AddPatient(CurrentPatient, numberDepartment);
-            Hospital.TakeCabinet(numberDepartment, Hospital.ReceptionHospital.BookRecords.Last().AttachedCabinet,
-                selectedDoctor);
-        }
+            (IManageData)Hospital.Building.ToList()[numberDepartment - 1]);
+        if (result) Hospital.AddPatient(CurrentPatient, numberDepartment);
     }
 
     private string GetDoctorSpecilialization(Doctor dt)
@@ -182,5 +186,11 @@ internal class HospitalMenu
     private void PrintMessage(object sender, EventArgs e)
     {
         Console.WriteLine((e as AddingNewEventArgs).NewObject);
+    }
+
+    private void WrtieInFile()
+    {
+        JsonConverter<List<Record>>.SerializeObject(Hospital.ReceptionHospital.BookRecords.ToList(), PathFile);
+        Console.WriteLine("Успешно!");
     }
 }
