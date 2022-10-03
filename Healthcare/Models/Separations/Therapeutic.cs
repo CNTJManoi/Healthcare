@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Models.Separations;
 
-internal class Therapeutic : IDataDepartment, IManageData
+internal class Therapeutic : IDepartment
 {
     private readonly List<Doctor> _doctors;
     private readonly List<Patient> _patients;

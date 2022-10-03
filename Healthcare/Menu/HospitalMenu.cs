@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using Healthcare.Json;
 using Healthcare.Models;
-using Healthcare.Models.Separations;
 
 namespace Healthcare.Menu;
 
@@ -57,15 +56,6 @@ internal class HospitalMenu
         OptionsMenu.Add(new OptionMenu(() =>
             Console.WriteLine(Hospital.GetDepartmentsInfo()), "Информация об отделениях"));
         OptionsMenu.Add(new OptionMenu(WrtieInFile, "Записать данные о записях в файл"));
-
-        //using (var sw = new StreamWriter(_path))
-        //{
-        //    sw.WriteLine("Врач " + _bookRecords.Last().ResponsibleDoctor.FullName + " у пациента " +
-        //                 _bookRecords.Last().RegisteredPatient.FullName + " в "
-        //                 + _bookRecords.Last().RecordingTime.Hour + ":" +
-        //                 _bookRecords.Last().RecordingTime.Minute + " в кабинете номер " +
-        //                 _bookRecords.Last().AttachedCabinet.Number);
-        //}
         OptionsMenu.Add(new OptionMenu(() =>
             _isContinue = false, "Выйти"));
     }
@@ -107,24 +97,24 @@ internal class HospitalMenu
         Console.WriteLine(Hospital.GetDepartmentsInfo());
         Console.WriteLine("\n0 для выхода в основное меню..");
         var choose = ChooseOption();
-        while (!(choose <= Hospital.Building.ToList().Count() && choose >= 0)) choose = ChooseOption();
+        while (!(choose <= Hospital.Buildings.ToList().Count() && choose >= 0)) choose = ChooseOption();
         if (choose == 0) return;
         var numberDepartment = choose;
         Console.WriteLine("Выберите врача отделения:");
         Console.WriteLine(GetDoctorsDepartmentList(choose));
         Console.WriteLine("\n0 для выхода в основное меню..");
         choose = ChooseOption();
-        while (!(choose <= Hospital.Building.ToList()[numberDepartment - 1].Doctors.Count() && choose >= 0))
+        while (!(choose <= Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.Count() && choose >= 0))
             choose = ChooseOption();
         if (choose == 0) return;
-        var selectedDoctor = Hospital.Building.ToList()[numberDepartment - 1].Doctors.ToList()[choose - 1];
+        var selectedDoctor = Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.ToList()[choose - 1];
         Console.Write("Введите время (часы): ");
         var timeH = ChooseOption(0, 24);
         Console.Write("Введите время (минуты): ");
         var timeM = ChooseOption(0, 60);
         var dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, timeH, timeM, 0);
         var result = Hospital.ReceptionHospital.RegistrationRecord(selectedDoctor, CurrentPatient, dt,
-            (IManageData)Hospital.Building.ToList()[numberDepartment - 1]);
+            Hospital.Buildings.ToList()[numberDepartment - 1]);
         if (result) Hospital.AddPatient(CurrentPatient, numberDepartment);
     }
 
@@ -153,7 +143,7 @@ internal class HospitalMenu
     {
         var numberDoctor = 1;
         var res = "";
-        foreach (var doctor in Hospital.Building.ToList()[choose - 1].Doctors)
+        foreach (var doctor in Hospital.Buildings.ToList()[choose - 1].Doctors)
         {
             var spec = GetDoctorSpecilialization(doctor);
 
@@ -170,7 +160,7 @@ internal class HospitalMenu
     {
         var numberDoctor = 1;
         var res = "";
-        foreach (var department in Hospital.Building.ToList())
+        foreach (var department in Hospital.Buildings.ToList())
         foreach (var doctor in department.Doctors)
         {
             var spec = GetDoctorSpecilialization(doctor);

@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Models.Separations;
 
-internal class Polyclinic : IDataDepartment, IManageData
+internal class Polyclinic : IDepartment
 {
     private readonly List<Doctor> _doctors;
     private readonly List<Patient> _patients;

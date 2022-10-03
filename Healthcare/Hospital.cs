@@ -15,19 +15,18 @@ internal enum TypeDoctor
 
 internal class Hospital
 {
-    private readonly List<IDataDepartment> _buildings;
+    private readonly List<IDepartment> _buildings;
 
     public Hospital(string name)
     {
         Id = Guid.NewGuid();
         Name = name;
         ReceptionHospital = new Reception();
-        _buildings = new List<IDataDepartment>();
+        _buildings = new List<IDepartment>();
     }
 
-    public IEnumerable<IDataDepartment> Building => _buildings;
     public Reception ReceptionHospital { get; }
-
+    public IEnumerable<IDepartment> Buildings => _buildings;
     public Guid Id { get; }
 
     public string Name { get; set; }
@@ -55,21 +54,9 @@ internal class Hospital
         return res;
     }
 
-    public void AddDepartment(IDataDepartment department)
+    public void AddDepartment(IDepartment department)
     {
         _buildings.Add(department);
-    }
-
-    public void AddDoctor(Doctor dt, int numberDepartment)
-    {
-        if (numberDepartment > _buildings.Count || numberDepartment < 0) throw new ArgumentOutOfRangeException();
-        (_buildings[numberDepartment] as IManageData).AddDoctor(dt);
-    }
-
-    public void AddPatient(Patient dt, int numberDepartment)
-    {
-        if (numberDepartment > _buildings.Count || numberDepartment < 0) throw new ArgumentOutOfRangeException();
-        (_buildings[numberDepartment - 1] as IManageData).AddPatient(dt);
     }
 
     public void TakeCabinet(int numberDepartment, Cabinet cb, Doctor dt)
@@ -77,5 +64,15 @@ internal class Hospital
         _buildings[numberDepartment - 1].Cabinets[_buildings[numberDepartment - 1]
                 .Cabinets.IndexOf(cb)]
             .EnterCabient(dt);
+    }
+
+    public void AddPatient(Patient CurrentPatient, int numberDepartment)
+    {
+        Buildings.ToList()[numberDepartment - 1].AddPatient(CurrentPatient);
+    }
+
+    public void AddDoctor(Doctor dt, int numberDepartment)
+    {
+        Buildings.ToList()[numberDepartment - 1].AddDoctor(dt);
     }
 }
