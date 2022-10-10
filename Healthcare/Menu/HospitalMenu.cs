@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using Healthcare.Json;
+﻿using Healthcare.Json;
 using Healthcare.Models;
+using Healthcare.Reception.Models;
 
 namespace Healthcare.Menu;
 

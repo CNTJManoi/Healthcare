@@ -1,7 +1,5 @@
 ﻿using Healthcare.Models;
-using Healthcare.Models.Separations;
-using Healthcare.Models.Separations.Base;
-using Healthcare.Models.Separations.Models;
+using Healthcare.Separations.Base;
 
 namespace Healthcare;
 
@@ -13,11 +11,11 @@ internal class Hospital
     {
         Id = Guid.NewGuid();
         Name = name;
-        ReceptionHospital = new Reception();
+        ReceptionHospital = new Reception.Reception();
         _buildings = new List<IDepartment>();
     }
 
-    public Reception ReceptionHospital { get; }
+    public Reception.Reception ReceptionHospital { get; }
     public IEnumerable<IDepartment> Buildings => _buildings;
     public Guid Id { get; }
 

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Healthcare.Models;
 
-namespace Healthcare.Models
+internal enum TypeDoctor
 {
-    internal enum TypeDoctor
-    {
-        Therapist,
-        Paramedic,
-        Gynecologist,
-        Optometrist,
-        Surgeon,
-        Nurse
-    }
+    Therapist,
+    Paramedic,
+    Gynecologist,
+    Optometrist,
+    Surgeon,
+    Nurse
 }

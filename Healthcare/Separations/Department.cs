@@ -1,14 +1,17 @@
-﻿using Healthcare.Models.Separations.Base;
-using Healthcare.Models.Separations.Models;
+﻿using Healthcare.Models;
+using Healthcare.Reception.Models;
+using Healthcare.Separations.Base;
+using Healthcare.Separations.Models;
 
-namespace Healthcare.Models.Separations;
+namespace Healthcare.Separations;
 
 internal class Department : IDepartment
 {
     private readonly List<Doctor> _doctors;
     private readonly List<Patient> _patients;
 
-    public Department(List<Cabinet> cabinets, string name, string address, int numberOfFloors , TypeDepartment typeDepartment)
+    public Department(List<Cabinet> cabinets, string name, string address, int numberOfFloors,
+        TypeDepartment typeDepartment)
     {
         Id = new Guid();
         Cabinets = cabinets;

@@ -1,6 +1,7 @@
-﻿using Healthcare.Models.Separations.Models;
+﻿using Healthcare.Models;
+using Healthcare.Separations.Models;
 
-namespace Healthcare.Models.Separations;
+namespace Healthcare.Separations;
 
 internal interface IDataDepartment
 {

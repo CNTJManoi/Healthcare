@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
-using Healthcare.Models;
-using Healthcare.Models.Separations;
+﻿using Healthcare.Models;
+using Healthcare.Reception.Models;
+using Healthcare.Separations;
 
-namespace Healthcare;
+namespace Healthcare.Reception;
 
 internal class Reception
 {
@@ -18,15 +18,10 @@ internal class Reception
 
     public TypeStatus RegistrationRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
     {
-        if (time.Minute % 15 != 0)
-        {
-            return TypeStatus.ErrorTime;
-        }
+        if (time.Minute % 15 != 0) return TypeStatus.ErrorTime;
 
         if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
-        {
             return TypeStatus.DoctorBusy;
-        }
 
         if (_bookRecords.Where(x => x.ResponsibleDoctor == doctor && x.RegisteredPatient == patient).Count() ==
             0
@@ -38,8 +33,10 @@ internal class Reception
                 _bookRecords.Add(record);
                 return TypeStatus.Successfully;
             }
+
             return TypeStatus.OfficesBusy;
         }
+
         return TypeStatus.GeneralError;
     }
 }
