@@ -13,14 +13,15 @@ internal class HospitalMenu
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
         CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12");
         OptionsMenu = new List<OptionMenu>();
+        HospitalInfo = new GetHospitalInfo(hp);
         _isContinue = true;
-        Hospital.ReceptionHospital.Message += PrintMessage;
         PathFile = path;
     }
 
     private Hospital? Hospital { get; }
     private Patient CurrentPatient { get; }
     private List<OptionMenu> OptionsMenu { get; }
+    private GetHospitalInfo HospitalInfo { get; }
     private string PathFile { get; }
 
     public void Start()
@@ -36,7 +37,7 @@ internal class HospitalMenu
             var t = new Task(OptionsMenu[option - 1].GetAction);
             t.Start();
             t.Wait();
-            Console.WriteLine("Нажмите любую клавишу...");
+            PrintMessage("Нажмите любую клавишу...");
             Console.ReadKey();
         }
     }
@@ -46,15 +47,15 @@ internal class HospitalMenu
         OptionsMenu.Add(new OptionMenu(() =>
             Enroll(), "Записаться к врачу"));
         OptionsMenu.Add(new OptionMenu(() =>
-            Console.WriteLine(GetAllDoctors()
+            PrintMessage(GetAllDoctors()
             ), "Посмотреть врачей больницы"));
         OptionsMenu.Add(new OptionMenu(() =>
-            Console.WriteLine(Hospital.GetPatientsList()
+            PrintMessage(HospitalInfo.GetPatientsList()
             ), "Посмотреть пациентов больницы"));
         OptionsMenu.Add(new OptionMenu(() =>
-            Console.WriteLine(Hospital.ReceptionHospital.RecordsInBook()), "Посмотреть книгу записей"));
+            PrintMessage(HospitalInfo.RecordsInBook()), "Посмотреть книгу записей"));
         OptionsMenu.Add(new OptionMenu(() =>
-            Console.WriteLine(Hospital.GetDepartmentsInfo()), "Информация об отделениях"));
+            PrintMessage(HospitalInfo.GetDepartmentsInfo()), "Информация об отделениях"));
         OptionsMenu.Add(new OptionMenu(WrtieInFile, "Записать данные о записях в файл"));
         OptionsMenu.Add(new OptionMenu(() =>
             _isContinue = false, "Выйти"));
@@ -62,15 +63,15 @@ internal class HospitalMenu
 
     private void PrintMainInfo()
     {
-        Console.WriteLine("Добро пожаловать в больницу " + Hospital.Name + "\n");
+        PrintMessage("Добро пожаловать в больницу " + Hospital.Name + "\n");
         var i = 0;
-        foreach (var Option in OptionsMenu) Console.WriteLine(++i + ") " + Option.Text);
+        foreach (var Option in OptionsMenu) PrintMessage(++i + ") " + Option.Text);
     }
 
     private int ChooseOption()
     {
         int option;
-        while (!int.TryParse(Console.ReadLine(), out option)) Console.WriteLine("Введите корректно номер опции!");
+        while (!int.TryParse(Console.ReadLine(), out option)) PrintMessage("Введите корректно номер опции!");
         return option;
     }
 
@@ -93,29 +94,50 @@ internal class HospitalMenu
 
     private void Enroll()
     {
-        Console.WriteLine("Выберите отделение:");
-        Console.WriteLine(Hospital.GetDepartmentsInfo());
-        Console.WriteLine("\n0 для выхода в основное меню..");
+        PrintMessage("Выберите отделение:");
+        PrintMessage(HospitalInfo.GetDepartmentsInfo());
+        PrintMessage("\n0 для выхода в основное меню..");
         var choose = ChooseOption();
         while (!(choose <= Hospital.Buildings.ToList().Count() && choose >= 0)) choose = ChooseOption();
         if (choose == 0) return;
         var numberDepartment = choose;
-        Console.WriteLine("Выберите врача отделения:");
-        Console.WriteLine(GetDoctorsDepartmentList(choose));
-        Console.WriteLine("\n0 для выхода в основное меню..");
+        PrintMessage("Выберите врача отделения:");
+        PrintMessage(GetDoctorsDepartmentList(choose));
+        PrintMessage("\n0 для выхода в основное меню..");
         choose = ChooseOption();
         while (!(choose <= Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.Count() && choose >= 0))
             choose = ChooseOption();
         if (choose == 0) return;
         var selectedDoctor = Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.ToList()[choose - 1];
-        Console.Write("Введите время (часы): ");
+        PrintMessage("Введите время (часы): ");
         var timeH = ChooseOption(0, 24);
-        Console.Write("Введите время (минуты): ");
+        PrintMessage("Введите время (минуты): ");
         var timeM = ChooseOption(0, 60);
         var dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, timeH, timeM, 0);
         var result = Hospital.ReceptionHospital.RegistrationRecord(selectedDoctor, CurrentPatient, dt,
             Hospital.Buildings.ToList()[numberDepartment - 1]);
-        if (result) Hospital.AddPatient(CurrentPatient, numberDepartment);
+        switch (result)
+        {
+            case TypeStatus.Successfully:
+                Hospital.AddPatient(CurrentPatient, numberDepartment);
+                PrintMessage("Запись создана!");
+                break;
+            case TypeStatus.DoctorBusy:
+                PrintMessage("Выбрано не рабочее время врача!");
+                break;
+            case TypeStatus.ErrorTime:
+                PrintMessage("Можно записаться лишь на 0, 15, 30, 45 минуты часа...");
+                break;
+            case TypeStatus.GeneralError:
+                PrintMessage("Выберите другое время!");
+                break;
+            case TypeStatus.OfficesBusy:
+                PrintMessage("Все кабинеты заняты!");
+                break;
+            default:
+                PrintMessage("Попробуйте еще раз!");
+                break;
+        }
     }
 
     private string GetDoctorSpecilialization(Doctor dt)
@@ -173,14 +195,14 @@ internal class HospitalMenu
         return res;
     }
 
-    private void PrintMessage(object sender, EventArgs e)
+    private void PrintMessage(string text)
     {
-        Console.WriteLine((e as AddingNewEventArgs).NewObject);
+        PrintMessage(text);
     }
 
     private void WrtieInFile()
     {
         JsonConverter<List<Record>>.SerializeObject(Hospital.ReceptionHospital.BookRecords.ToList(), PathFile);
-        Console.WriteLine("Успешно!");
+        PrintMessage("Успешно!");
     }
 }

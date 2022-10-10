@@ -1,4 +1,4 @@
-﻿namespace Healthcare.Models.Separations;
+﻿namespace Healthcare.Models.Separations.Models;
 
 internal class Cabinet
 {

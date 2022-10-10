@@ -1,4 +1,4 @@
-﻿using Healthcare.Models.Separations;
+﻿using Healthcare.Models.Separations.Models;
 
 namespace Healthcare.Models;
 

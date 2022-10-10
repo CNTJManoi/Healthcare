@@ -1,11 +1,14 @@
-﻿namespace Healthcare.Models.Separations;
+﻿using Healthcare.Models.Separations.Base;
+using Healthcare.Models.Separations.Models;
 
-internal class Therapeutic : IDepartment
+namespace Healthcare.Models.Separations;
+
+internal class Department : IDepartment
 {
     private readonly List<Doctor> _doctors;
     private readonly List<Patient> _patients;
 
-    public Therapeutic(List<Cabinet> cabinets, string name, string address, int numberOfFloors)
+    public Department(List<Cabinet> cabinets, string name, string address, int numberOfFloors , TypeDepartment typeDepartment)
     {
         Id = new Guid();
         Cabinets = cabinets;
@@ -14,6 +17,7 @@ internal class Therapeutic : IDepartment
         NumberOfFloors = numberOfFloors;
         _doctors = new List<Doctor>();
         _patients = new List<Patient>();
+        TypeDepartment = typeDepartment;
     }
 
     public Guid Id { get; }
@@ -26,6 +30,7 @@ internal class Therapeutic : IDepartment
     public string Name { get; set; }
     public string Address { get; }
     public int NumberOfFloors { get; set; }
+    public TypeDepartment TypeDepartment { get; }
 
     public void AddCabinet(Cabinet cb)
     {
@@ -56,7 +61,11 @@ internal class Therapeutic : IDepartment
     {
         foreach (var cabinet in Cabinets)
             if (cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor))
+            {
+                Cabinets[Cabinets.IndexOf(cabinet)].EnterCabient(doctor);
                 return new Record(doctor, pt, dt, cabinet);
+            }
+
         return null;
     }
 }

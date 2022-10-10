@@ -1,4 +1,6 @@
-﻿namespace Healthcare.Models.Separations;
+﻿using Healthcare.Models.Separations.Models;
+
+namespace Healthcare.Models.Separations;
 
 internal interface IDataDepartment
 {
@@ -9,4 +11,5 @@ internal interface IDataDepartment
     string Name { get; set; }
     string Address { get; }
     int NumberOfFloors { get; set; }
+    public TypeDepartment TypeDepartment { get; }
 }
