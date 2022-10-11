@@ -1,11 +1,14 @@
-﻿namespace Healthcare.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Healthcare.Models;
 
 internal interface IPeople
 {
-    Guid Id { get; }
-    string Surname { get; }
-    string Name { get; }
-    string Society { get; }
+    [Key]
+    Guid Id { get; set; }
+    string Surname { get; set; }
+    string Name { get; set; }
+    string Society { get; set; }
     string FullName { get; }
-    string Address { get; }
+    string Address { get; set; }
 }

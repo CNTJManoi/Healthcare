@@ -1,4 +1,5 @@
-﻿using Healthcare.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Healthcare.Models;
 using Healthcare.Separations.Base;
 
 namespace Healthcare;
@@ -15,9 +16,14 @@ internal class Hospital
         _buildings = new List<IDepartment>();
     }
 
+    public Hospital()
+    {
+
+    }
     public Reception.Reception ReceptionHospital { get; }
     public IEnumerable<IDepartment> Buildings => _buildings;
-    public Guid Id { get; }
+    [Key]
+    public Guid Id { get; set; }
 
     public string Name { get; set; }
 
@@ -26,9 +32,9 @@ internal class Hospital
         _buildings.Add(department);
     }
 
-    public void AddPatient(Patient CurrentPatient, int numberDepartment)
+    public void AddPatient(Patient currentPatient, int numberDepartment)
     {
-        _buildings.ToList()[numberDepartment - 1].AddPatient(CurrentPatient);
+        _buildings.ToList()[numberDepartment - 1].AddPatient(currentPatient);
     }
 
     public void AddDoctor(Doctor dt, int numberDepartment)

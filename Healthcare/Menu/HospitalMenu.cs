@@ -197,7 +197,7 @@ internal class HospitalMenu
 
     private void PrintMessage(string text)
     {
-        PrintMessage(text);
+        Console.WriteLine(text);
     }
 
     private void WrtieInFile()

@@ -1,4 +1,6 @@
-﻿namespace Healthcare.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Healthcare.Models;
 
 internal class Doctor : IPeople
 {
@@ -6,7 +8,7 @@ internal class Doctor : IPeople
         TypeDoctor specializationDoctor, string beginWorkTime,
         string endWorkTime)
     {
-        Id = Guid.NewGuid();
+        Id = new Guid();
         Surname = surname;
         Name = name;
         Society = society;
@@ -17,16 +19,22 @@ internal class Doctor : IPeople
         EndWorkTime = endWorkTime;
     }
 
-    public string Diplom { get; }
+    public Doctor()
+    {
+
+    }
+
+    public string Diplom { get; set; }
     public string BeginWorkTime { get; set; }
     public string EndWorkTime { get; set; }
-    public TypeDoctor SpecializationDoctor { get; }
-    public Guid Id { get; }
-    public string Surname { get; }
-    public string Name { get; }
-    public string Society { get; }
+    public TypeDoctor SpecializationDoctor { get; set; }
+    [Key]
+    public Guid Id { get; set; }
+    public string Surname { get; set; }
+    public string Name { get; set; }
+    public string Society { get; set; }
 
     public string FullName => Surname + " " + Name + " " + Society;
 
-    public string Address { get; }
+    public string Address { get; set; }
 }

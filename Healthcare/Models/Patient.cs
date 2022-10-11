@@ -1,4 +1,6 @@
-﻿namespace Healthcare.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Healthcare.Models;
 
 internal class Patient : IPeople
 {
@@ -11,13 +13,18 @@ internal class Patient : IPeople
         Address = address;
     }
 
-    public Guid Id { get; }
+    public Patient()
+    {
 
-    public string Surname { get; }
-    public string Name { get; }
-    public string Society { get; }
+    }
+    [Key]
+    public Guid Id { get; set; }
+
+    public string Surname { get; set; }
+    public string Name { get; set; }
+    public string Society { get; set; }
 
     public string FullName => Surname + " " + Name + " " + Society;
 
-    public string Address { get; }
+    public string Address { get; set; }
 }

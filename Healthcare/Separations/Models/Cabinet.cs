@@ -1,4 +1,5 @@
-﻿using Healthcare.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Healthcare.Models;
 
 namespace Healthcare.Separations.Models;
 
@@ -6,10 +7,17 @@ internal class Cabinet
 {
     public Cabinet(TypeDoctor td, int numberCabinet)
     {
+        Id = new Guid();
         TypeDoctor = td;
         Number = numberCabinet;
     }
 
+    public Cabinet()
+    {
+
+    }
+    [Key]
+    public Guid Id { get; set; }
     private Doctor AttachedDoctor { get; set; }
     public TypeDoctor TypeDoctor { get; set; }
     private Patient EnteringPatient { get; set; }
@@ -22,8 +30,7 @@ internal class Cabinet
 
     public bool CabinetIsBusy(Doctor dt)
     {
-        if (AttachedDoctor == null) return false;
-        if (AttachedDoctor == dt) return false;
+        if (AttachedDoctor == dt || AttachedDoctor == null) return false;
         return true;
     }
 }
