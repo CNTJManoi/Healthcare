@@ -1,4 +1,5 @@
-﻿using Healthcare.Json;
+﻿using Healthcare.Database;
+using Healthcare.Json;
 using Healthcare.Models;
 using Healthcare.Reception.Models;
 
@@ -7,13 +8,14 @@ namespace Healthcare.Menu;
 internal class HospitalMenu
 {
     private bool _isContinue;
-
-    public HospitalMenu(Hospital? hp, string path)
+    
+    public HospitalMenu(Hospital? hp, string path, DatabaseManager dm)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
         CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12");
         OptionsMenu = new List<OptionMenu>();
         HospitalInfo = new GetHospitalInfo(hp);
+        DatabaseManager = dm;
         _isContinue = true;
         PathFile = path;
     }
@@ -22,6 +24,7 @@ internal class HospitalMenu
     private Patient CurrentPatient { get; }
     private List<OptionMenu> OptionsMenu { get; }
     private GetHospitalInfo HospitalInfo { get; }
+    private DatabaseManager DatabaseManager { get; }
     private string PathFile { get; }
 
     public void Start()
@@ -120,6 +123,7 @@ internal class HospitalMenu
         {
             case TypeStatus.Successfully:
                 Hospital.AddPatient(CurrentPatient, numberDepartment);
+                DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
                 PrintMessage("Запись создана!");
                 break;
             case TypeStatus.DoctorBusy:

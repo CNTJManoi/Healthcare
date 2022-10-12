@@ -1,4 +1,5 @@
-﻿using Healthcare.Models;
+﻿using Healthcare.Database;
+using Healthcare.Models;
 using Healthcare.Reception.Models;
 using Healthcare.Separations;
 
@@ -39,5 +40,10 @@ internal class Reception
         }
 
         return TypeStatus.GeneralError;
+    }
+    public TypeStatus RegistrationRecord(Record record)
+    {
+        _bookRecords.Add(record);
+        return TypeStatus.Successfully;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Healthcare.Models;
+﻿using Healthcare.Models;
 
 namespace Healthcare.Separations.Models;
 
@@ -11,12 +10,13 @@ internal class Cabinet
         TypeDoctor = td;
         Number = numberCabinet;
     }
-
+    /// <summary>
+    /// Конструктор для базы данных
+    /// </summary>
     public Cabinet()
     {
 
     }
-    [Key]
     public Guid Id { get; set; }
     private Doctor AttachedDoctor { get; set; }
     public TypeDoctor TypeDoctor { get; set; }

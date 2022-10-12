@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Healthcare.Separations;
 
 namespace Healthcare.Models;
 
@@ -18,7 +18,9 @@ internal class Doctor : IPeople
         BeginWorkTime = beginWorkTime;
         EndWorkTime = endWorkTime;
     }
-
+    /// <summary>
+    /// Конструктор для базы данных
+    /// </summary>
     public Doctor()
     {
 
@@ -28,13 +30,11 @@ internal class Doctor : IPeople
     public string BeginWorkTime { get; set; }
     public string EndWorkTime { get; set; }
     public TypeDoctor SpecializationDoctor { get; set; }
-    [Key]
     public Guid Id { get; set; }
     public string Surname { get; set; }
     public string Name { get; set; }
     public string Society { get; set; }
 
     public string FullName => Surname + " " + Name + " " + Society;
-
     public string Address { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Healthcare.Models;
+﻿using Healthcare.Models;
 using Healthcare.Reception.Models;
 using Healthcare.Separations.Base;
 using Healthcare.Separations.Models;
@@ -23,12 +22,13 @@ internal class Department : IDepartment
         _patients = new List<Patient>();
         TypeDepartment = typeDepartment;
     }
-
+    /// <summary>
+    /// Конструктор для базы данных
+    /// </summary>
     public Department()
     {
 
     }
-    [Key]
     public Guid Id { get; set; }
     public List<Cabinet> Cabinets { get; }
 
@@ -78,7 +78,7 @@ internal class Department : IDepartment
         foreach (var cabinet in Cabinets.Where(cabinet => cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor)))
         {
             Cabinets[Cabinets.IndexOf(cabinet)].EnterCabient(doctor);
-            return new Record(doctor, pt, dt, cabinet);
+            return new Record(doctor, pt, dt, cabinet, this);
         }
 
         return null;

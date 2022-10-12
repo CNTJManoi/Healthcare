@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Healthcare.Separations;
 
 namespace Healthcare.Models;
 
@@ -12,12 +12,13 @@ internal class Patient : IPeople
         Society = society;
         Address = address;
     }
-
+    /// <summary>
+    /// Конструктор для базы данных
+    /// </summary>
     public Patient()
     {
 
     }
-    [Key]
     public Guid Id { get; set; }
 
     public string Surname { get; set; }
