@@ -8,10 +8,28 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var dm = new DatabaseManager();
-        CheckArgs(args, 2);
-        //var hm = new HospitalMenu(ParseFile(args[0]), args[1]);
-        new HospitalMenu(dm.LoadDatabase(), args[1], dm).Start();
+        Console.WriteLine("Подключение к базе данных...");
+        DatabaseManager dm = new DatabaseManager();
+        bool isDatabase = true;
+        Hospital? hp = dm.LoadDatabase();
+        if (hp == null)
+        {
+            isDatabase = false;
+            Console.WriteLine("Попытка подключения к JSON...");
+            CheckArgs(args, 2);
+            Thread.Sleep(1500);
+            hp = ParseFile(args[0]);
+            if (hp == null)
+            {
+                Console.WriteLine("Произошла ошибка подключения к JSON");
+                ExitProgram();
+            }else new HospitalMenu(hp, args[1]).Start();
+        }
+        else
+        {
+            new HospitalMenu(hp, args[1], dm).Start();
+        }
+
         //var hp = new Hospital("Яркое солнышко");
         //var cb1 = new List<Cabinet>();
         //cb1.Add(new Cabinet(TypeDoctor.Paramedic, 101));

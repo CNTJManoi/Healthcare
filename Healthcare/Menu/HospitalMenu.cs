@@ -9,7 +9,7 @@ internal class HospitalMenu
 {
     private bool _isContinue;
 
-    public HospitalMenu(Hospital? hp, string path, DatabaseManager dm)
+    public HospitalMenu(Hospital? hp, string path, DatabaseManager dm = null)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
         CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12");
@@ -123,7 +123,7 @@ internal class HospitalMenu
         {
             case TypeStatus.Successfully:
                 Hospital.AddPatient(CurrentPatient, numberDepartment);
-                DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
+                if(DatabaseManager != null) DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
                 PrintMessage("Запись создана!");
                 break;
             case TypeStatus.DoctorBusy:

@@ -2,7 +2,7 @@
   "profiles": {
     "Healthcare": {
       "commandName": "Project",
-      "commandLineArgs": "hospitalNew.json result.json"
+      "commandLineArgs": "Hospital.json Result.json"
     }
   }
 }

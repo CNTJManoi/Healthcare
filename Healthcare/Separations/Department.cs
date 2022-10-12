@@ -9,12 +9,13 @@ internal class Department : IDepartment
 {
     private List<Doctor> _doctors;
     private List<Patient> _patients;
+    private List<Cabinet> _cabinets;
 
     public Department(List<Cabinet> cabinets, string name, string address, int numberOfFloors,
         TypeDepartment typeDepartment)
     {
         Id = new Guid();
-        Cabinets = cabinets;
+        _cabinets = cabinets;
         Name = name;
         Address = address;
         NumberOfFloors = numberOfFloors;
@@ -31,7 +32,11 @@ internal class Department : IDepartment
     }
 
     public Guid Id { get; set; }
-    public List<Cabinet> Cabinets { get; }
+    public IEnumerable<Cabinet> Cabinets
+    {
+        get => _cabinets;
+        set => _cabinets = value.ToList();
+    }
 
     public IEnumerable<Doctor> Doctors
     {
@@ -52,7 +57,7 @@ internal class Department : IDepartment
 
     public void AddCabinet(Cabinet cb)
     {
-        Cabinets.Add(cb);
+        _cabinets.Add(cb);
     }
 
     public void AddDoctor(Doctor dt)
@@ -77,10 +82,10 @@ internal class Department : IDepartment
 
     public Record? AddRecord(Doctor doctor, Patient pt, DateTime dt)
     {
-        foreach (var cabinet in Cabinets.Where(cabinet =>
+        foreach (var cabinet in _cabinets.Where(cabinet =>
                      cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor)))
         {
-            Cabinets[Cabinets.IndexOf(cabinet)].EnterCabient(doctor);
+            _cabinets[_cabinets.IndexOf(cabinet)].EnterCabient(doctor);
             return new Record(doctor, pt, dt, cabinet, this);
         }
 
