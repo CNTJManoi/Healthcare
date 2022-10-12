@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Healthcare.Models;
+﻿using Healthcare.Models;
 using Healthcare.Separations;
-using Healthcare.Separations.Base;
 using Healthcare.Separations.Models;
 
 namespace Healthcare.Reception.Models;
@@ -17,13 +15,14 @@ internal class Record
         AttachedCabinet = cabinet;
         AttachedDepartment = department;
     }
+
     /// <summary>
-    /// Конструктор для базы данных
+    ///     Конструктор для базы данных
     /// </summary>
     public Record()
     {
-
     }
+
     public Guid Id { get; set; }
     public Doctor ResponsibleDoctor { get; set; }
     public Patient RegisteredPatient { get; set; }

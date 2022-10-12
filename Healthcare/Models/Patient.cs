@@ -1,6 +1,4 @@
-﻿using Healthcare.Separations;
-
-namespace Healthcare.Models;
+﻿namespace Healthcare.Models;
 
 internal class Patient : IPeople
 {
@@ -12,13 +10,14 @@ internal class Patient : IPeople
         Society = society;
         Address = address;
     }
+
     /// <summary>
-    /// Конструктор для базы данных
+    ///     Конструктор для базы данных
     /// </summary>
     public Patient()
     {
-
     }
+
     public Guid Id { get; set; }
 
     public string Surname { get; set; }

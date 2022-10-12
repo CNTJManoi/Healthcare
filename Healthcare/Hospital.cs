@@ -14,14 +14,16 @@ internal class Hospital
         ReceptionHospital = new Reception.Reception();
         _buildings = new List<IDepartment>();
     }
+
     /// <summary>
-    /// Конструктор для базы данных
+    ///     Конструктор для базы данных
     /// </summary>
     public Hospital()
     {
         ReceptionHospital = new Reception.Reception();
         _buildings = new List<IDepartment>();
     }
+
     public Reception.Reception ReceptionHospital { get; }
     public IEnumerable<IDepartment> Buildings => _buildings;
     public Guid Id { get; set; }

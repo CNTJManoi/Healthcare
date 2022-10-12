@@ -8,7 +8,7 @@ namespace Healthcare.Menu;
 internal class HospitalMenu
 {
     private bool _isContinue;
-    
+
     public HospitalMenu(Hospital? hp, string path, DatabaseManager dm)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));

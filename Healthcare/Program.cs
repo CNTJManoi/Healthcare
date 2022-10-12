@@ -1,9 +1,6 @@
 ﻿using Healthcare.Database;
 using Healthcare.Json;
 using Healthcare.Menu;
-using Healthcare.Models;
-using Healthcare.Separations;
-using Healthcare.Separations.Models;
 
 namespace Healthcare;
 
@@ -11,7 +8,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        DatabaseManager dm = new DatabaseManager();
+        var dm = new DatabaseManager();
         CheckArgs(args, 2);
         //var hm = new HospitalMenu(ParseFile(args[0]), args[1]);
         new HospitalMenu(dm.LoadDatabase(), args[1], dm).Start();

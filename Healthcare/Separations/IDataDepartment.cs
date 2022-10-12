@@ -6,8 +6,8 @@ namespace Healthcare.Separations;
 
 internal interface IDataDepartment
 {
-    [Key]
-    Guid Id { get; set; }
+    [Key] Guid Id { get; set; }
+
     List<Cabinet> Cabinets { get; }
     public IEnumerable<Doctor> Doctors { get; set; }
     public IEnumerable<Patient> Patients { get; set; }

@@ -22,25 +22,27 @@ internal class Department : IDepartment
         _patients = new List<Patient>();
         TypeDepartment = typeDepartment;
     }
+
     /// <summary>
-    /// Конструктор для базы данных
+    ///     Конструктор для базы данных
     /// </summary>
     public Department()
     {
-
     }
+
     public Guid Id { get; set; }
     public List<Cabinet> Cabinets { get; }
 
     public IEnumerable<Doctor> Doctors
     {
-        get { return _doctors; }
-        set { _doctors = value.ToList(); }
+        get => _doctors;
+        set => _doctors = value.ToList();
     }
 
-    public IEnumerable<Patient> Patients {
-        get { return _patients; }
-        set { _patients = value.ToList(); }
+    public IEnumerable<Patient> Patients
+    {
+        get => _patients;
+        set => _patients = value.ToList();
     }
 
     public string Name { get; set; }
@@ -75,7 +77,8 @@ internal class Department : IDepartment
 
     public Record? AddRecord(Doctor doctor, Patient pt, DateTime dt)
     {
-        foreach (var cabinet in Cabinets.Where(cabinet => cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor)))
+        foreach (var cabinet in Cabinets.Where(cabinet =>
+                     cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor)))
         {
             Cabinets[Cabinets.IndexOf(cabinet)].EnterCabient(doctor);
             return new Record(doctor, pt, dt, cabinet, this);

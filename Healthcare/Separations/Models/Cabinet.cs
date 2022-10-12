@@ -10,13 +10,14 @@ internal class Cabinet
         TypeDoctor = td;
         Number = numberCabinet;
     }
+
     /// <summary>
-    /// Конструктор для базы данных
+    ///     Конструктор для базы данных
     /// </summary>
     public Cabinet()
     {
-
     }
+
     public Guid Id { get; set; }
     private Doctor AttachedDoctor { get; set; }
     public TypeDoctor TypeDoctor { get; set; }

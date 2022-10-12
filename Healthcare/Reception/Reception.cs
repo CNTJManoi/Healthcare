@@ -1,5 +1,4 @@
-﻿using Healthcare.Database;
-using Healthcare.Models;
+﻿using Healthcare.Models;
 using Healthcare.Reception.Models;
 using Healthcare.Separations;
 
@@ -24,9 +23,9 @@ internal class Reception
         if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
             return TypeStatus.DoctorBusy;
 
-        if (_bookRecords.Where(x => x.ResponsibleDoctor == 
+        if (_bookRecords.Where(x => x.ResponsibleDoctor ==
                 doctor && x.RegisteredPatient == patient).Count() == 0
-            || _bookRecords.Where(x => x.ResponsibleDoctor == 
+            || _bookRecords.Where(x => x.ResponsibleDoctor ==
                 doctor && x.RecordingTime == time).Count() == 0)
         {
             var record = department.AddRecord(doctor, patient, time);
@@ -41,6 +40,7 @@ internal class Reception
 
         return TypeStatus.GeneralError;
     }
+
     public TypeStatus RegistrationRecord(Record record)
     {
         _bookRecords.Add(record);

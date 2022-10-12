@@ -1,6 +1,4 @@
-﻿using Healthcare.Separations;
-
-namespace Healthcare.Models;
+﻿namespace Healthcare.Models;
 
 internal class Doctor : IPeople
 {
@@ -18,12 +16,12 @@ internal class Doctor : IPeople
         BeginWorkTime = beginWorkTime;
         EndWorkTime = endWorkTime;
     }
+
     /// <summary>
-    /// Конструктор для базы данных
+    ///     Конструктор для базы данных
     /// </summary>
     public Doctor()
     {
-
     }
 
     public string Diplom { get; set; }
