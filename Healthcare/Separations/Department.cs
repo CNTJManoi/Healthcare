@@ -7,9 +7,9 @@ namespace Healthcare.Separations;
 
 internal class Department : IDepartment
 {
+    private List<Cabinet> _cabinets;
     private List<Doctor> _doctors;
     private List<Patient> _patients;
-    private List<Cabinet> _cabinets;
 
     public Department(List<Cabinet> cabinets, string name, string address, int numberOfFloors,
         TypeDepartment typeDepartment)
@@ -32,6 +32,7 @@ internal class Department : IDepartment
     }
 
     public Guid Id { get; set; }
+
     public IEnumerable<Cabinet> Cabinets
     {
         get => _cabinets;

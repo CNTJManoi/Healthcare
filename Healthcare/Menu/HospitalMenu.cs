@@ -123,7 +123,7 @@ internal class HospitalMenu
         {
             case TypeStatus.Successfully:
                 Hospital.AddPatient(CurrentPatient, numberDepartment);
-                if(DatabaseManager != null) DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
+                if (DatabaseManager != null) DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
                 PrintMessage("Запись создана!");
                 break;
             case TypeStatus.DoctorBusy:

@@ -16,6 +16,7 @@ internal class DatabaseManager
     //public DbSet<Department> Departments => Set<Department>();
     //public DbSet<Hospital> Hospital => Set<Hospital>();
     private ApplicationContext ApplicationContext { get; }
+
     public Hospital LoadDatabase()
     {
         try
@@ -43,6 +44,7 @@ internal class DatabaseManager
         ApplicationContext.Records.Add(record);
         ApplicationContext.SaveChanges();
     }
+
     public void Close()
     {
         ApplicationContext.Database.CloseConnection();

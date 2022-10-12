@@ -9,9 +9,9 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("Подключение к базе данных...");
-        DatabaseManager dm = new DatabaseManager();
-        bool isDatabase = true;
-        Hospital? hp = dm.LoadDatabase();
+        var dm = new DatabaseManager();
+        var isDatabase = true;
+        var hp = dm.LoadDatabase();
         if (hp == null)
         {
             isDatabase = false;
@@ -23,7 +23,11 @@ internal class Program
             {
                 Console.WriteLine("Произошла ошибка подключения к JSON");
                 ExitProgram();
-            }else new HospitalMenu(hp, args[1]).Start();
+            }
+            else
+            {
+                new HospitalMenu(hp, args[1]).Start();
+            }
         }
         else
         {
