@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Reception.Models;
 
-internal enum TypeStatus
+public enum TypeStatus
 {
     Successfully,
     ErrorTime,

@@ -3,18 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Healthcare.Database;
 
-internal class DatabaseManager
+public class DatabaseManager
 {
     public DatabaseManager()
     {
         ApplicationContext = new ApplicationContext();
     }
 
-    //public DbSet<Doctor> Doctors => Set<Doctor>();
-    //public DbSet<Patient> Patients => Set<Patient>();
-    //public DbSet<Record> Records => Set<Record>();
-    //public DbSet<Department> Departments => Set<Department>();
-    //public DbSet<Hospital> Hospital => Set<Hospital>();
     private ApplicationContext ApplicationContext { get; }
 
     public Hospital LoadDatabase()

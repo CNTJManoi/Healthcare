@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Models;
 
-internal enum TypeDoctor
+public enum TypeDoctor
 {
     Therapist,
     Paramedic,

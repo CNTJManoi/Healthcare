@@ -1,8 +1,7 @@
 ﻿using Healthcare.Database;
 using Healthcare.Json;
-using Healthcare.Menu;
 
-namespace Healthcare;
+namespace Healthcare.Menu;
 
 internal class Program
 {

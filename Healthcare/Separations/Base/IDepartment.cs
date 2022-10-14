@@ -1,5 +1,5 @@
 ﻿namespace Healthcare.Separations.Base;
 
-internal interface IDepartment : IDataDepartment, IManageData
+public interface IDepartment : IDataDepartment, IManageData
 {
 }

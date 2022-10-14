@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Healthcare.Menu": {
+      "commandName": "Project",
+      "commandLineArgs": "Hospital.json Result.json"
+    }
+  }
+}

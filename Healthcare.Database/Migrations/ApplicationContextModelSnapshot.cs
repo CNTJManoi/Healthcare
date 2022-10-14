@@ -3,18 +3,16 @@ using System;
 using Healthcare.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Healthcare.Migrations
+namespace Healthcare.Database.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221012171430_InitialMigration")]
-    partial class InitialMigration
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

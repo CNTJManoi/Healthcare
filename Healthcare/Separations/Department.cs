@@ -5,7 +5,7 @@ using Healthcare.Separations.Models;
 
 namespace Healthcare.Separations;
 
-internal class Department : IDepartment
+public class Department : IDepartment
 {
     private List<Cabinet> _cabinets;
     private List<Doctor> _doctors;

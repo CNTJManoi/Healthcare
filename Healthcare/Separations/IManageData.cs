@@ -4,7 +4,7 @@ using Healthcare.Separations.Models;
 
 namespace Healthcare.Separations;
 
-internal interface IManageData
+public interface IManageData
 
 {
     void AddCabinet(Cabinet cb);

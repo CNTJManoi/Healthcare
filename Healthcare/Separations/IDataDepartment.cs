@@ -4,7 +4,7 @@ using Healthcare.Separations.Models;
 
 namespace Healthcare.Separations;
 
-internal interface IDataDepartment
+public interface IDataDepartment
 {
     [Key] Guid Id { get; set; }
     public IEnumerable<Cabinet> Cabinets { get; set; }

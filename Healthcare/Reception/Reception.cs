@@ -4,7 +4,7 @@ using Healthcare.Separations;
 
 namespace Healthcare.Reception;
 
-internal class Reception
+public class Reception
 {
     private readonly List<Record> _bookRecords;
 
@@ -25,8 +25,8 @@ internal class Reception
 
         if (_bookRecords.Where(x => x.ResponsibleDoctor ==
                 doctor && x.RegisteredPatient == patient).Count() == 0
-            || _bookRecords.Where(x => x.ResponsibleDoctor ==
-                doctor && x.RecordingTime == time).Count() == 0)
+            && _bookRecords.Where(x => x.ResponsibleDoctor ==
+                doctor && x.RecordingTime.Hour == time.Hour && x.RecordingTime.Minute == time.Minute).Count() == 0)
         {
             var record = department.AddRecord(doctor, patient, time);
             if (record != null)

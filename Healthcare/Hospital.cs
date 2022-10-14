@@ -3,7 +3,7 @@ using Healthcare.Separations.Base;
 
 namespace Healthcare;
 
-internal class Hospital
+public class Hospital
 {
     private readonly List<IDepartment> _buildings;
 

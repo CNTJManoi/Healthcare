@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Models;
 
-internal class Patient : IPeople
+public class Patient : IPeople
 {
     public Patient(string surname, string name, string society, string address)
     {

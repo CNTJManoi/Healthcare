@@ -2,7 +2,7 @@
 
 namespace Healthcare.Separations.Models;
 
-internal class Cabinet
+public class Cabinet
 {
     public Cabinet(TypeDoctor td, int numberCabinet)
     {

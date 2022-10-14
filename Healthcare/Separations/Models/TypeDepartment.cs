@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Separations.Models;
 
-internal enum TypeDepartment
+public enum TypeDepartment
 {
     Therapeutic,
     Surgical,
