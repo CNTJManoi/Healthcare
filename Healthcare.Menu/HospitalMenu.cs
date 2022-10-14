@@ -27,7 +27,9 @@ internal class HospitalMenu
     private GetHospitalInfo HospitalInfo { get; }
     private DatabaseManager? DatabaseManager { get; }
     private string PathFile { get; }
-
+    /// <summary>
+    /// Начало работы консольного меню
+    /// </summary>
     public void Start()
     {
         _isContinue = true;
@@ -159,7 +161,7 @@ internal class HospitalMenu
         };
     }
 
-    public string GetDoctorsDepartmentList(int choose)
+    private string GetDoctorsDepartmentList(int choose)
     {
         var numberDoctor = 1;
         var res = "";
@@ -176,7 +178,7 @@ internal class HospitalMenu
         return res;
     }
 
-    public string GetAllDoctors()
+    private string GetAllDoctors()
     {
         var numberDoctor = 1;
         var res = "";

@@ -11,11 +11,24 @@ public class Reception
     public Reception()
     {
         _bookRecords = new List<Record>();
+        Id = Guid.NewGuid();
     }
-
-    public int Id { get; set; }
+    /// <summary>
+    /// Идентификационный номер
+    /// </summary>
+    public Guid Id { get; set; }
+    /// <summary>
+    /// Исчисляемый список записей к врачам
+    /// </summary>
     public IEnumerable<Record> BookRecords => _bookRecords;
-
+    /// <summary>
+    /// Осуществить запись в книгу
+    /// </summary>
+    /// <param name="doctor">Экземпляр класса доктора</param>
+    /// <param name="patient">Экземпляр класса пациент</param>
+    /// <param name="time">Время записи</param>
+    /// <param name="department">Отделение</param>
+    /// <returns>Статус заявки</returns>
     public TypeStatus RegistrationRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
     {
         if (time.Minute % 15 != 0) return TypeStatus.ErrorTime;
@@ -40,7 +53,10 @@ public class Reception
 
         return TypeStatus.GeneralError;
     }
-
+    /// <summary>
+    /// Внести уже существующую запись
+    /// </summary>
+    /// <param name="record">Экземпляр класса записи</param>
     public void RegistrationRecord(Record record)
     {
         _bookRecords.Add(record);

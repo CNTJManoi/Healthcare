@@ -12,7 +12,10 @@ public class DatabaseManager
     }
 
     private ApplicationContext ApplicationContext { get; }
-
+    /// <summary>
+    /// Загрузить данные с базы данных
+    /// </summary>
+    /// <returns></returns>
     public Hospital LoadDatabase()
     {
         try
@@ -34,13 +37,18 @@ public class DatabaseManager
             return null;
         }
     }
-
+    /// <summary>
+    /// Записать запись в базу данных
+    /// </summary>
+    /// <param name="record">Экземпляр класса записи</param>
     public void SaveRecord(Record record)
     {
         ApplicationContext.Records.Add(record);
         ApplicationContext.SaveChanges();
     }
-
+    /// <summary>
+    /// Закрыть соединение с базой данных
+    /// </summary>
     public void Close()
     {
         ApplicationContext.Database.CloseConnection();

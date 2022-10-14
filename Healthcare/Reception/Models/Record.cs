@@ -22,11 +22,28 @@ public class Record
     public Record()
     {
     }
-
+    /// <summary>
+    /// Идентификационный номер записи
+    /// </summary>
     public Guid Id { get; set; }
+    /// <summary>
+    /// Отвественный доктор
+    /// </summary>
     public Doctor ResponsibleDoctor { get; set; }
+    /// <summary>
+    /// Прикрепленный пациент
+    /// </summary>
     public Patient RegisteredPatient { get; set; }
+    /// <summary>
+    /// Время записи
+    /// </summary>
     public DateTime RecordingTime { get; set; }
+    /// <summary>
+    /// Прикрепленный кабинет
+    /// </summary>
     public Cabinet AttachedCabinet { get; set; }
+    /// <summary>
+    /// Отвественное отделение
+    /// </summary>
     public Department AttachedDepartment { get; set; }
 }
