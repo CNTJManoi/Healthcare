@@ -1,5 +1,6 @@
 ﻿using Healthcare.Database;
-using Healthcare.Json;
+using Healthcare.Logic;
+using Healthcare.Logic.Json;
 
 namespace Healthcare.Menu;
 

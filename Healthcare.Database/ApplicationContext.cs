@@ -1,6 +1,7 @@
-﻿using Healthcare.Models;
-using Healthcare.Reception.Models;
-using Healthcare.Separations;
+﻿using Healthcare.Logic;
+using Healthcare.Logic.Models;
+using Healthcare.Logic.Reception.Models;
+using Healthcare.Logic.Separations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Healthcare.Database;

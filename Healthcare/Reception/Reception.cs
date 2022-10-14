@@ -1,8 +1,8 @@
-﻿using Healthcare.Models;
-using Healthcare.Reception.Models;
-using Healthcare.Separations;
+﻿using Healthcare.Logic.Models;
+using Healthcare.Logic.Reception.Models;
+using Healthcare.Logic.Separations;
 
-namespace Healthcare.Reception;
+namespace Healthcare.Logic.Reception;
 
 public class Reception
 {

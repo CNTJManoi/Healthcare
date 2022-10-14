@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Healthcare.Models;
-using Healthcare.Separations.Models;
+﻿using Healthcare.Logic.Models;
+using Healthcare.Logic.Separations.Models;
 
-namespace Healthcare.Separations;
+namespace Healthcare.Logic.Separations;
 
 public interface IDataDepartment
 {
-    [Key] Guid Id { get; set; }
+    Guid Id { get; set; }
     public IEnumerable<Cabinet> Cabinets { get; set; }
     public IEnumerable<Doctor> Doctors { get; set; }
     public IEnumerable<Patient> Patients { get; set; }

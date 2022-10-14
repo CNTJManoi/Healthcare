@@ -1,4 +1,6 @@
-﻿namespace Healthcare.Menu;
+﻿using Healthcare.Logic;
+
+namespace Healthcare.Menu;
 
 internal class GetHospitalInfo
 {

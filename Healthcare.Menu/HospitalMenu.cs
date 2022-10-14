@@ -1,7 +1,8 @@
 ﻿using Healthcare.Database;
-using Healthcare.Json;
-using Healthcare.Models;
-using Healthcare.Reception.Models;
+using Healthcare.Logic;
+using Healthcare.Logic.Json;
+using Healthcare.Logic.Models;
+using Healthcare.Logic.Reception.Models;
 
 namespace Healthcare.Menu;
 

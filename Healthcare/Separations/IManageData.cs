@@ -1,8 +1,8 @@
-﻿using Healthcare.Models;
-using Healthcare.Reception.Models;
-using Healthcare.Separations.Models;
+﻿using Healthcare.Logic.Models;
+using Healthcare.Logic.Reception.Models;
+using Healthcare.Logic.Separations.Models;
 
-namespace Healthcare.Separations;
+namespace Healthcare.Logic.Separations;
 
 public interface IManageData
 

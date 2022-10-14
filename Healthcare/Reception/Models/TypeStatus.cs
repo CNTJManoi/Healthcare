@@ -1,4 +1,4 @@
-﻿namespace Healthcare.Reception.Models;
+﻿namespace Healthcare.Logic.Reception.Models;
 
 public enum TypeStatus
 {

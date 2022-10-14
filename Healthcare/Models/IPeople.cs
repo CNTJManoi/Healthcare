@@ -1,4 +1,4 @@
-﻿namespace Healthcare.Models;
+﻿namespace Healthcare.Logic.Models;
 
 internal interface IPeople
 {

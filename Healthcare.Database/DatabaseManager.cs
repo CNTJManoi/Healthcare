@@ -1,4 +1,5 @@
-﻿using Healthcare.Reception.Models;
+﻿using Healthcare.Logic;
+using Healthcare.Logic.Reception.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Healthcare.Database;

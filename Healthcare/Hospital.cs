@@ -1,7 +1,7 @@
-﻿using Healthcare.Models;
-using Healthcare.Separations.Base;
+﻿using Healthcare.Logic.Models;
+using Healthcare.Logic.Separations.Base;
 
-namespace Healthcare;
+namespace Healthcare.Logic;
 
 public class Hospital
 {

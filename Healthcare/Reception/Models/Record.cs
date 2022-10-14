@@ -1,10 +1,10 @@
-﻿using Healthcare.Models;
-using Healthcare.Separations;
-using Healthcare.Separations.Models;
+﻿using Healthcare.Logic.Models;
+using Healthcare.Logic.Separations;
+using Healthcare.Logic.Separations.Models;
 
-namespace Healthcare.Reception.Models;
+namespace Healthcare.Logic.Reception.Models;
 
-public class Record
+public class Record 
 {
     public Record(Doctor doctor, Patient patient, DateTime time, Cabinet cabinet, Department department)
     {

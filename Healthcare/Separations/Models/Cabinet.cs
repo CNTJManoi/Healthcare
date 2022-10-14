@@ -1,6 +1,6 @@
-﻿using Healthcare.Models;
+﻿using Healthcare.Logic.Models;
 
-namespace Healthcare.Separations.Models;
+namespace Healthcare.Logic.Separations.Models;
 
 public class Cabinet
 {

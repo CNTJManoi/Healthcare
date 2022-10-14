@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Healthcare.Json;
+namespace Healthcare.Logic.Json;
 
 public static class JsonConverter<T>
 {

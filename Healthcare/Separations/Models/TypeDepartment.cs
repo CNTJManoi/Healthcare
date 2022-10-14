@@ -1,4 +1,4 @@
-﻿namespace Healthcare.Separations.Models;
+﻿namespace Healthcare.Logic.Separations.Models;
 
 public enum TypeDepartment
 {

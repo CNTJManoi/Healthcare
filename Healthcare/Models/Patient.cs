@@ -1,4 +1,4 @@
-﻿namespace Healthcare.Models;
+﻿namespace Healthcare.Logic.Models;
 
 public class Patient : IPeople
 {
