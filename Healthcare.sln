@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Menu", "Healthca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Database", "Healthcare.Database\Healthcare.Database.csproj", "{8C77F805-7852-4A83-841E-E2DF186D07D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Json", "Healthcare.Json\Healthcare.Json.csproj", "{6B5CCBA6-1CFD-4B62-A10A-59BC6F50CF5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8C77F805-7852-4A83-841E-E2DF186D07D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C77F805-7852-4A83-841E-E2DF186D07D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C77F805-7852-4A83-841E-E2DF186D07D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B5CCBA6-1CFD-4B62-A10A-59BC6F50CF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B5CCBA6-1CFD-4B62-A10A-59BC6F50CF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B5CCBA6-1CFD-4B62-A10A-59BC6F50CF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B5CCBA6-1CFD-4B62-A10A-59BC6F50CF5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

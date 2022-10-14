@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Healthcare.Logic.Json;
+namespace Healthcare.Json;
 
 public static class JsonConverter<T>
 {
@@ -8,8 +8,10 @@ public static class JsonConverter<T>
     {
         var fileInfo = new FileInfo(pathFile);
         if (!fileInfo.Exists) throw new FileNotFoundException("File not exists!");
-        var settings = new JsonSerializerSettings();
-        settings.TypeNameHandling = TypeNameHandling.Auto;
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto
+        };
         var test = JsonConvert.DeserializeObject<T>(File.ReadAllText(pathFile), settings);
         return test;
     }
@@ -18,8 +20,10 @@ public static class JsonConverter<T>
     {
         if (File.Exists(pathFile)) File.Delete(pathFile);
         File.Create(pathFile).Close();
-        var settings = new JsonSerializerSettings();
-        settings.TypeNameHandling = TypeNameHandling.Auto;
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto
+        };
         File.WriteAllText(pathFile, JsonConvert.SerializeObject(entity, Formatting.Indented, settings));
     }
 }

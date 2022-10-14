@@ -1,15 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <OutputType>Exe</OutputType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Healthcare.Database\Healthcare.Database.csproj" />
-    <ProjectReference Include="..\Healthcare\Healthcare.Logic.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Healthcare.Database\Healthcare.Database.csproj" />
+		<ProjectReference Include="..\Healthcare.Json\Healthcare.Json.csproj" />
+		<ProjectReference Include="..\Healthcare\Healthcare.Logic.csproj" />
+	</ItemGroup>
 
 </Project>

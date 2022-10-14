@@ -23,10 +23,10 @@ public class Reception
         if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
             return TypeStatus.DoctorBusy;
 
-        if (_bookRecords.Where(x => x.ResponsibleDoctor ==
-                doctor && x.RegisteredPatient == patient).Count() == 0
-            && _bookRecords.Where(x => x.ResponsibleDoctor ==
-                doctor && x.RecordingTime.Hour == time.Hour && x.RecordingTime.Minute == time.Minute).Count() == 0)
+        if (!_bookRecords.Any(x => x.ResponsibleDoctor ==
+                doctor && x.RegisteredPatient == patient)
+            && !_bookRecords.Any(x => x.ResponsibleDoctor ==
+                doctor && x.RecordingTime.Hour == time.Hour && x.RecordingTime.Minute == time.Minute))
         {
             var record = department.AddRecord(doctor, patient, time);
             if (record != null)
@@ -41,9 +41,8 @@ public class Reception
         return TypeStatus.GeneralError;
     }
 
-    public TypeStatus RegistrationRecord(Record record)
+    public void RegistrationRecord(Record record)
     {
         _bookRecords.Add(record);
-        return TypeStatus.Successfully;
     }
 }

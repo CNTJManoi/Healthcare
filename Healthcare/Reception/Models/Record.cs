@@ -4,7 +4,7 @@ using Healthcare.Logic.Separations.Models;
 
 namespace Healthcare.Logic.Reception.Models;
 
-public class Record 
+public class Record
 {
     public Record(Doctor doctor, Patient patient, DateTime time, Cabinet cabinet, Department department)
     {

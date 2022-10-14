@@ -1,6 +1,6 @@
 ﻿using Healthcare.Database;
+using Healthcare.Json;
 using Healthcare.Logic;
-using Healthcare.Logic.Json;
 
 namespace Healthcare.Menu;
 
@@ -10,11 +10,9 @@ internal class Program
     {
         Console.WriteLine("Подключение к базе данных...");
         var dm = new DatabaseManager();
-        var isDatabase = true;
         var hp = dm.LoadDatabase();
         if (hp == null)
         {
-            isDatabase = false;
             Console.WriteLine("Попытка подключения к JSON...");
             CheckArgs(args, 2);
             Thread.Sleep(1500);
@@ -119,7 +117,7 @@ internal class Program
 
     private static void CheckArgs(string[] args, int num)
     {
-        if (args.Count() != num)
+        if (args.Length != num)
         {
             Console.WriteLine("Неверное количество аргументов командной строки!");
             ExitProgram();

@@ -1,6 +1,6 @@
 ﻿using Healthcare.Database;
+using Healthcare.Json;
 using Healthcare.Logic;
-using Healthcare.Logic.Json;
 using Healthcare.Logic.Models;
 using Healthcare.Logic.Reception.Models;
 
@@ -10,7 +10,7 @@ internal class HospitalMenu
 {
     private bool _isContinue;
 
-    public HospitalMenu(Hospital? hp, string path, DatabaseManager dm = null)
+    public HospitalMenu(Hospital? hp, string path, DatabaseManager? dm = null)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
         CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12");
@@ -25,7 +25,7 @@ internal class HospitalMenu
     private Patient CurrentPatient { get; }
     private List<OptionMenu> OptionsMenu { get; }
     private GetHospitalInfo HospitalInfo { get; }
-    private DatabaseManager DatabaseManager { get; }
+    private DatabaseManager? DatabaseManager { get; }
     private string PathFile { get; }
 
     public void Start()
@@ -147,23 +147,16 @@ internal class HospitalMenu
 
     private string GetDoctorSpecilialization(Doctor dt)
     {
-        switch (dt.SpecializationDoctor)
+        return dt.SpecializationDoctor switch
         {
-            case TypeDoctor.Therapist:
-                return "Терапевт";
-            case TypeDoctor.Paramedic:
-                return "Фельдшер";
-            case TypeDoctor.Gynecologist:
-                return "Гинеколог";
-            case TypeDoctor.Optometrist:
-                return "Окулист";
-            case TypeDoctor.Surgeon:
-                return "Хирург";
-            case TypeDoctor.Nurse:
-                return "Медсестра/Медбрат";
-            default:
-                return string.Empty;
-        }
+            TypeDoctor.Therapist => "Терапевт",
+            TypeDoctor.Paramedic => "Фельдшер",
+            TypeDoctor.Gynecologist => "Гинеколог",
+            TypeDoctor.Optometrist => "Окулист",
+            TypeDoctor.Surgeon => "Хирург",
+            TypeDoctor.Nurse => "Медсестра/Медбрат",
+            _ => string.Empty
+        };
     }
 
     public string GetDoctorsDepartmentList(int choose)
