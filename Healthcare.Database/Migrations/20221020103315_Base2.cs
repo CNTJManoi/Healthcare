@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Healthcare.Database.Migrations
+namespace Healthcare.Menu.Migrations
 {
-    public partial class MigrationName : Migration
+    public partial class Base2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -109,8 +109,7 @@ namespace Healthcare.Database.Migrations
                     ResponsibleDoctorId = table.Column<Guid>(type: "char(36)", nullable: false),
                     RegisteredPatientId = table.Column<Guid>(type: "char(36)", nullable: false),
                     RecordingTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    AttachedCabinetId = table.Column<Guid>(type: "char(36)", nullable: false),
-                    AttachedDepartmentId = table.Column<Guid>(type: "char(36)", nullable: false)
+                    AttachedCabinetId = table.Column<Guid>(type: "char(36)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -119,12 +118,6 @@ namespace Healthcare.Database.Migrations
                         name: "FK_Records_Cabinet_AttachedCabinetId",
                         column: x => x.AttachedCabinetId,
                         principalTable: "Cabinet",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Records_Departments_AttachedDepartmentId",
-                        column: x => x.AttachedDepartmentId,
-                        principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -160,11 +153,6 @@ namespace Healthcare.Database.Migrations
                 name: "IX_Records_AttachedCabinetId",
                 table: "Records",
                 column: "AttachedCabinetId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Records_AttachedDepartmentId",
-                table: "Records",
-                column: "AttachedDepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Records_RegisteredPatientId",

@@ -13,7 +13,7 @@ internal class HospitalMenu
     public HospitalMenu(Hospital? hp, string path, DatabaseManager? dm = null)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
-        CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12");
+        CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12", Guid.NewGuid());
         OptionsMenu = new List<OptionMenu>();
         HospitalInfo = new GetHospitalInfo(hp);
         DatabaseManager = dm;
@@ -27,8 +27,9 @@ internal class HospitalMenu
     private GetHospitalInfo HospitalInfo { get; }
     private DatabaseManager? DatabaseManager { get; }
     private string PathFile { get; }
+
     /// <summary>
-    /// Начало работы консольного меню
+    ///     Начало работы консольного меню
     /// </summary>
     public void Start()
     {

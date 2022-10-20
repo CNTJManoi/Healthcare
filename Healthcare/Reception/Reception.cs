@@ -13,16 +13,19 @@ public class Reception
         _bookRecords = new List<Record>();
         Id = Guid.NewGuid();
     }
+
     /// <summary>
-    /// Идентификационный номер
+    ///     Идентификационный номер
     /// </summary>
     public Guid Id { get; set; }
+
     /// <summary>
-    /// Исчисляемый список записей к врачам
+    ///     Исчисляемый список записей к врачам
     /// </summary>
     public IEnumerable<Record> BookRecords => _bookRecords;
+
     /// <summary>
-    /// Осуществить запись в книгу
+    ///     Осуществить запись в книгу
     /// </summary>
     /// <param name="doctor">Экземпляр класса доктора</param>
     /// <param name="patient">Экземпляр класса пациент</param>
@@ -53,8 +56,9 @@ public class Reception
 
         return TypeStatus.GeneralError;
     }
+
     /// <summary>
-    /// Внести уже существующую запись
+    ///     Внести уже существующую запись
     /// </summary>
     /// <param name="record">Экземпляр класса записи</param>
     public void RegistrationRecord(Record record)

@@ -4,49 +4,57 @@ namespace Healthcare.Logic.Separations.Models;
 
 public class Cabinet
 {
-    public Cabinet(TypeDoctor td, int numberCabinet)
+    private Cabinet(TypeDoctor typeDoctor, int number, Guid id)
     {
-        Id = new Guid();
-        TypeDoctor = td;
-        Number = numberCabinet;
+        Id = id;
+        TypeDoctor = typeDoctor;
+        Number = number;
+    }
+
+    public Cabinet(TypeDoctor typeDoctor, int number, Doctor attachedDoctor, Patient enteringPatient, Guid id) : this(
+        typeDoctor, number, id)
+    {
+        AttachedDoctor = attachedDoctor;
+        EnteringPatient = enteringPatient;
     }
 
     /// <summary>
-    ///     Конструктор для базы данных
+    ///     Идентификационный номер кабинета
     /// </summary>
-    public Cabinet()
-    {
-    }
+    public Guid Id { get; }
+
     /// <summary>
-    /// Идентификационный номер кабинета
+    ///     Прикрепленный доктор к кабинету
     /// </summary>
-    public Guid Id { get; set; }
+
+    public Doctor AttachedDoctor { get; private set; }
+
     /// <summary>
-    /// Прикрепленный доктор к кабинету
-    /// </summary>
-    private Doctor AttachedDoctor { get; set; }
-    /// <summary>
-    /// Тип кабинета
+    ///     Тип кабинета
     /// </summary>
     public TypeDoctor TypeDoctor { get; set; }
+
     /// <summary>
-    /// Вошедший пациент в кабинет
+    ///     Вошедший пациент в кабинет
     /// </summary>
-    private Patient EnteringPatient { get; set; }
+    public Patient EnteringPatient { get; }
+
     /// <summary>
-    /// Номер кабинета
+    ///     Номер кабинета
     /// </summary>
-    public int Number { get; set; }
+    public int Number { get; }
+
     /// <summary>
-    /// Прикрепить доктора к кабинету
+    ///     Прикрепить доктора к кабинету
     /// </summary>
     /// <param name="dt"></param>
     public void EnterCabient(Doctor dt)
     {
         AttachedDoctor = dt;
     }
+
     /// <summary>
-    /// Занят ли кабинет
+    ///     Занят ли кабинет
     /// </summary>
     /// <param name="dt">Экземпляр класса возможного доктора в кабинете</param>
     /// <returns>bool - true если занят иначе false</returns>

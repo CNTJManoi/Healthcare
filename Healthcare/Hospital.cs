@@ -7,45 +7,42 @@ public class Hospital
 {
     private readonly List<IDepartment> _buildings;
 
-    public Hospital(string name)
+    public Hospital(Guid id, string name)
     {
-        Id = Guid.NewGuid();
+        Id = id;
         Name = name;
         ReceptionHospital = new Reception.Reception();
         _buildings = new List<IDepartment>();
     }
 
     /// <summary>
-    ///     Конструктор для базы данных
-    /// </summary>
-    public Hospital()
-    {
-        ReceptionHospital = new Reception.Reception();
-        _buildings = new List<IDepartment>();
-    }
-    /// <summary>
-    /// Приемная больницы
+    ///     Приемная больницы
     /// </summary>
     public Reception.Reception ReceptionHospital { get; }
+
     /// <summary>
-    /// Перечисляемый список отделений в больнице
+    ///     Перечисляемый список отделений в больнице
     /// </summary>
     public IEnumerable<IDepartment> Buildings => _buildings;
-    public Guid Id { get; set; }
+
+    public Guid Id { get; }
+
     /// <summary>
-    /// Наименование больницы
+    ///     Наименование больницы
     /// </summary>
     public string Name { get; set; }
+
     /// <summary>
-    /// Добавить отделение в больницу
+    ///     Добавить отделение в больницу
     /// </summary>
     /// <param name="department">ЭЭкземпляр класса отделения</param>
     public void AddDepartment(IDepartment department)
     {
         _buildings.Add(department);
     }
+
     /// <summary>
-    /// Добавить пациента в определенное отделение больницы
+    ///     Добавить пациента в определенное отделение больницы
     /// </summary>
     /// <param name="currentPatient">Экземпляр класса пациента</param>
     /// <param name="numberDepartment">Номер отделения больницы</param>
@@ -53,8 +50,9 @@ public class Hospital
     {
         _buildings[numberDepartment - 1].AddPatient(currentPatient);
     }
+
     /// <summary>
-    /// Добавить доктора в определенное отделение больницы
+    ///     Добавить доктора в определенное отделение больницы
     /// </summary>
     /// <param name="dt">Экземпляр класса доктора</param>
     /// <param name="numberDepartment">Номер отделения больницы</param>

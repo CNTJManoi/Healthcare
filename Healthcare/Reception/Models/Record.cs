@@ -1,49 +1,46 @@
 ﻿using Healthcare.Logic.Models;
-using Healthcare.Logic.Separations;
 using Healthcare.Logic.Separations.Models;
 
 namespace Healthcare.Logic.Reception.Models;
 
 public class Record
 {
-    public Record(Doctor doctor, Patient patient, DateTime time, Cabinet cabinet, Department department)
+    private Record(DateTime recordingTime, Guid id)
     {
-        Id = new Guid();
-        ResponsibleDoctor = doctor;
-        RegisteredPatient = patient;
-        RecordingTime = time;
-        AttachedCabinet = cabinet;
-        AttachedDepartment = department;
+        Id = id;
+        RecordingTime = recordingTime;
+    }
+
+    public Record(DateTime recordingTime, Guid id,
+        Cabinet attachedCabinet, Doctor responsibleDoctor, Patient registeredPatient) : this(recordingTime, id)
+    {
+        AttachedCabinet = attachedCabinet;
+        ResponsibleDoctor = responsibleDoctor;
+        RegisteredPatient = registeredPatient;
     }
 
     /// <summary>
-    ///     Конструктор для базы данных
+    ///     Идентификационный номер записи
     /// </summary>
-    public Record()
-    {
-    }
+    public Guid Id { get; }
+
     /// <summary>
-    /// Идентификационный номер записи
+    ///     Отвественный доктор
     /// </summary>
-    public Guid Id { get; set; }
+    public Doctor ResponsibleDoctor { get; }
+
     /// <summary>
-    /// Отвественный доктор
+    ///     Прикрепленный пациент
     /// </summary>
-    public Doctor ResponsibleDoctor { get; set; }
+    public Patient RegisteredPatient { get; }
+
     /// <summary>
-    /// Прикрепленный пациент
+    ///     Время записи
     /// </summary>
-    public Patient RegisteredPatient { get; set; }
+    public DateTime RecordingTime { get; }
+
     /// <summary>
-    /// Время записи
+    ///     Прикрепленный кабинет
     /// </summary>
-    public DateTime RecordingTime { get; set; }
-    /// <summary>
-    /// Прикрепленный кабинет
-    /// </summary>
-    public Cabinet AttachedCabinet { get; set; }
-    /// <summary>
-    /// Отвественное отделение
-    /// </summary>
-    public Department AttachedDepartment { get; set; }
+    public Cabinet AttachedCabinet { get; }
 }

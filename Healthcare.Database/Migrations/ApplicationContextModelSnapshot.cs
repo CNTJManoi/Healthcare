@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Healthcare.Database.Migrations
+namespace Healthcare.Menu.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot
@@ -16,10 +16,10 @@ namespace Healthcare.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Healthcare.Hospital", b =>
+            modelBuilder.Entity("Healthcare.Logic.Hospital", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +34,7 @@ namespace Healthcare.Database.Migrations
                     b.ToTable("Hospital");
                 });
 
-            modelBuilder.Entity("Healthcare.Models.Doctor", b =>
+            modelBuilder.Entity("Healthcare.Logic.Models.Doctor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,7 +81,7 @@ namespace Healthcare.Database.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("Healthcare.Models.Patient", b =>
+            modelBuilder.Entity("Healthcare.Logic.Models.Patient", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,16 +113,13 @@ namespace Healthcare.Database.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("Healthcare.Reception.Models.Record", b =>
+            modelBuilder.Entity("Healthcare.Logic.Reception.Models.Record", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AttachedCabinetId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("AttachedDepartmentId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("RecordingTime")
@@ -138,8 +135,6 @@ namespace Healthcare.Database.Migrations
 
                     b.HasIndex("AttachedCabinetId");
 
-                    b.HasIndex("AttachedDepartmentId");
-
                     b.HasIndex("RegisteredPatientId");
 
                     b.HasIndex("ResponsibleDoctorId");
@@ -147,7 +142,7 @@ namespace Healthcare.Database.Migrations
                     b.ToTable("Records");
                 });
 
-            modelBuilder.Entity("Healthcare.Separations.Department", b =>
+            modelBuilder.Entity("Healthcare.Logic.Separations.Department", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,7 +167,7 @@ namespace Healthcare.Database.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("Healthcare.Separations.Models.Cabinet", b =>
+            modelBuilder.Entity("Healthcare.Logic.Separations.Models.Cabinet", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -194,41 +189,35 @@ namespace Healthcare.Database.Migrations
                     b.ToTable("Cabinet");
                 });
 
-            modelBuilder.Entity("Healthcare.Models.Doctor", b =>
+            modelBuilder.Entity("Healthcare.Logic.Models.Doctor", b =>
                 {
-                    b.HasOne("Healthcare.Separations.Department", null)
+                    b.HasOne("Healthcare.Logic.Separations.Department", null)
                         .WithMany("Doctors")
                         .HasForeignKey("DepartmentId");
                 });
 
-            modelBuilder.Entity("Healthcare.Models.Patient", b =>
+            modelBuilder.Entity("Healthcare.Logic.Models.Patient", b =>
                 {
-                    b.HasOne("Healthcare.Separations.Department", null)
+                    b.HasOne("Healthcare.Logic.Separations.Department", null)
                         .WithMany("Patients")
                         .HasForeignKey("DepartmentId");
                 });
 
-            modelBuilder.Entity("Healthcare.Reception.Models.Record", b =>
+            modelBuilder.Entity("Healthcare.Logic.Reception.Models.Record", b =>
                 {
-                    b.HasOne("Healthcare.Separations.Models.Cabinet", "AttachedCabinet")
+                    b.HasOne("Healthcare.Logic.Separations.Models.Cabinet", "AttachedCabinet")
                         .WithMany()
                         .HasForeignKey("AttachedCabinetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Healthcare.Separations.Department", "AttachedDepartment")
-                        .WithMany()
-                        .HasForeignKey("AttachedDepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Healthcare.Models.Patient", "RegisteredPatient")
+                    b.HasOne("Healthcare.Logic.Models.Patient", "RegisteredPatient")
                         .WithMany()
                         .HasForeignKey("RegisteredPatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Healthcare.Models.Doctor", "ResponsibleDoctor")
+                    b.HasOne("Healthcare.Logic.Models.Doctor", "ResponsibleDoctor")
                         .WithMany()
                         .HasForeignKey("ResponsibleDoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -236,21 +225,19 @@ namespace Healthcare.Database.Migrations
 
                     b.Navigation("AttachedCabinet");
 
-                    b.Navigation("AttachedDepartment");
-
                     b.Navigation("RegisteredPatient");
 
                     b.Navigation("ResponsibleDoctor");
                 });
 
-            modelBuilder.Entity("Healthcare.Separations.Models.Cabinet", b =>
+            modelBuilder.Entity("Healthcare.Logic.Separations.Models.Cabinet", b =>
                 {
-                    b.HasOne("Healthcare.Separations.Department", null)
+                    b.HasOne("Healthcare.Logic.Separations.Department", null)
                         .WithMany("Cabinets")
                         .HasForeignKey("DepartmentId");
                 });
 
-            modelBuilder.Entity("Healthcare.Separations.Department", b =>
+            modelBuilder.Entity("Healthcare.Logic.Separations.Department", b =>
                 {
                     b.Navigation("Cabinets");
 

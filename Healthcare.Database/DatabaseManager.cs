@@ -12,8 +12,9 @@ public class DatabaseManager
     }
 
     private ApplicationContext ApplicationContext { get; }
+
     /// <summary>
-    /// Загрузить данные с базы данных
+    ///     Загрузить данные с базы данных
     /// </summary>
     /// <returns></returns>
     public Hospital LoadDatabase()
@@ -22,14 +23,19 @@ public class DatabaseManager
         {
             var hp = ApplicationContext.Hospital.ToList()[0];
             foreach (var department in ApplicationContext.Departments
-                         .Include(x => x.Cabinets)
                          .Include(x => x.Patients)
                          .Include(x => x.Doctors)
+                         .Include(x => x.Cabinets)
                          .ToList())
                 hp.AddDepartment(department);
+
             foreach (var record in ApplicationContext.Records
+                         .Include(x => x.AttachedCabinet)
+                         .Include(x => x.RegisteredPatient)
+                         .Include(x => x.ResponsibleDoctor)
                          .ToList())
                 hp.ReceptionHospital.RegistrationRecord(record);
+
             return hp;
         }
         catch
@@ -37,8 +43,9 @@ public class DatabaseManager
             return null;
         }
     }
+
     /// <summary>
-    /// Записать запись в базу данных
+    ///     Записать запись в базу данных
     /// </summary>
     /// <param name="record">Экземпляр класса записи</param>
     public void SaveRecord(Record record)
@@ -46,8 +53,9 @@ public class DatabaseManager
         ApplicationContext.Records.Add(record);
         ApplicationContext.SaveChanges();
     }
+
     /// <summary>
-    /// Закрыть соединение с базой данных
+    ///     Закрыть соединение с базой данных
     /// </summary>
     public void Close()
     {
