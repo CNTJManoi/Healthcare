@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Healthcare.Database\Healthcare.Database.csproj" />
 		<ProjectReference Include="..\Healthcare.Json\Healthcare.Json.csproj" />
+		<ProjectReference Include="..\Healthcare.Notification\Healthcare.Notification.csproj" />
 		<ProjectReference Include="..\Healthcare\Healthcare.Logic.csproj" />
 	</ItemGroup>
 

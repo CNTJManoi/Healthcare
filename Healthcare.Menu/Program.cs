@@ -1,13 +1,16 @@
 ﻿using Healthcare.Database;
 using Healthcare.Json;
 using Healthcare.Logic;
+using Healthcare.Notification;
 
 namespace Healthcare.Menu;
 
 internal class Program
 {
+    //паттерн композитор. Инкапсуляция починилась
     private static void Main(string[] args)
     {
+        FileData.FileResultPath = args[1];
         Console.WriteLine("Подключение к базе данных...");
         var dm = new DatabaseManager();
         var hp = dm.LoadDatabase();
@@ -24,12 +27,12 @@ internal class Program
             }
             else
             {
-                new HospitalMenu(hp, args[1]).Start();
+                new HospitalMenu(hp).Start();
             }
         }
         else
         {
-            new HospitalMenu(hp, args[1], dm).Start();
+            new HospitalMenu(hp, dm).Start();
         }
 
         //var hp = new Hospital("Яркое солнышко");

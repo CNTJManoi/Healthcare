@@ -16,14 +16,12 @@ public static class JsonConverter<T>
         return test;
     }
 
-    public static void SerializeObject(T entity, string pathFile)
+    public static string SerializeObject(T entity)
     {
-        if (File.Exists(pathFile)) File.Delete(pathFile);
-        File.Create(pathFile).Close();
         var settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Auto
         };
-        File.WriteAllText(pathFile, JsonConvert.SerializeObject(entity, Formatting.Indented, settings));
+        return JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
     }
 }

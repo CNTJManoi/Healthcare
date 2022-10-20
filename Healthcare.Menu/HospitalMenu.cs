@@ -3,6 +3,7 @@ using Healthcare.Json;
 using Healthcare.Logic;
 using Healthcare.Logic.Models;
 using Healthcare.Logic.Reception.Models;
+using Healthcare.Notification;
 
 namespace Healthcare.Menu;
 
@@ -10,7 +11,7 @@ internal class HospitalMenu
 {
     private bool _isContinue;
 
-    public HospitalMenu(Hospital? hp, string path, DatabaseManager? dm = null)
+    public HospitalMenu(Hospital? hp, DatabaseManager? dm = null)
     {
         Hospital = hp ?? throw new ArgumentNullException(nameof(hp));
         CurrentPatient = new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12", Guid.NewGuid());
@@ -18,7 +19,7 @@ internal class HospitalMenu
         HospitalInfo = new GetHospitalInfo(hp);
         DatabaseManager = dm;
         _isContinue = true;
-        PathFile = path;
+        Annunciator = new Annunciator();
     }
 
     private Hospital? Hospital { get; }
@@ -26,6 +27,7 @@ internal class HospitalMenu
     private List<OptionMenu> OptionsMenu { get; }
     private GetHospitalInfo HospitalInfo { get; }
     private DatabaseManager? DatabaseManager { get; }
+    private Annunciator Annunciator { get; }
     private string PathFile { get; }
 
     /// <summary>
@@ -63,7 +65,7 @@ internal class HospitalMenu
             PrintMessage(HospitalInfo.RecordsInBook()), "Посмотреть книгу записей"));
         OptionsMenu.Add(new OptionMenu(() =>
             PrintMessage(HospitalInfo.GetDepartmentsInfo()), "Информация об отделениях"));
-        OptionsMenu.Add(new OptionMenu(WrtieInFile, "Записать данные о записях в файл"));
+        OptionsMenu.Add(new OptionMenu(WriteInFile, "Записать данные о записях в файл"));
         OptionsMenu.Add(new OptionMenu(() =>
             _isContinue = false, "Выйти"));
     }
@@ -201,9 +203,10 @@ internal class HospitalMenu
         Console.WriteLine(text);
     }
 
-    private void WrtieInFile()
+    private void WriteInFile()
     {
-        JsonConverter<List<Record>>.SerializeObject(Hospital.ReceptionHospital.BookRecords.ToList(), PathFile);
+        Annunciator.Notify(JsonConverter<List<Record>>.SerializeObject(Hospital.ReceptionHospital.BookRecords.ToList()),
+            TypeNotification.File);
         PrintMessage("Успешно!");
     }
 }

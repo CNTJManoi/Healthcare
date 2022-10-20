@@ -27,7 +27,7 @@ public class Cabinet
     ///     Прикрепленный доктор к кабинету
     /// </summary>
 
-    public Doctor AttachedDoctor { get; private set; }
+    private Doctor AttachedDoctor { get; set; }
 
     /// <summary>
     ///     Тип кабинета
@@ -37,7 +37,7 @@ public class Cabinet
     /// <summary>
     ///     Вошедший пациент в кабинет
     /// </summary>
-    public Patient EnteringPatient { get; }
+    private Patient EnteringPatient { get; }
 
     /// <summary>
     ///     Номер кабинета
