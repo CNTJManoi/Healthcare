@@ -28,7 +28,6 @@ internal class HospitalMenu
     private GetHospitalInfo HospitalInfo { get; }
     private DatabaseManager? DatabaseManager { get; }
     private Annunciator Annunciator { get; }
-    private string PathFile { get; }
 
     /// <summary>
     ///     Начало работы консольного меню

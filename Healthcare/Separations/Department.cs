@@ -29,7 +29,7 @@ public class Department : IDepartment
     {
         _cabinets = cabinets.ToList();
         _doctors = doctors.ToList();
-        _patients = Patients.ToList();
+        _patients = patients.ToList();
     }
 
     /// <summary>

@@ -1,8 +1,6 @@
-﻿
-namespace Healthcare.Notification
+﻿namespace Healthcare.Notification;
+
+public enum TypeNotification
 {
-    public enum TypeNotification
-    {
-        File,
-    }
+    File
 }
