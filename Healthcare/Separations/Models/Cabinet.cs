@@ -6,6 +6,7 @@ public class Cabinet
 {
     private Cabinet(TypeDoctor typeDoctor, int number, Guid id)
     {
+        if (number <= 0) throw new ArgumentOutOfRangeException(nameof(number));
         Id = id;
         TypeDoctor = typeDoctor;
         Number = number;
@@ -37,7 +38,7 @@ public class Cabinet
     /// <summary>
     ///     Вошедший пациент в кабинет
     /// </summary>
-    private Patient EnteringPatient { get; }
+    private Patient EnteringPatient { get; set; }
 
     /// <summary>
     ///     Номер кабинета
@@ -50,7 +51,16 @@ public class Cabinet
     /// <param name="dt"></param>
     public void EnterCabient(Doctor dt)
     {
-        AttachedDoctor = dt;
+        AttachedDoctor = dt ?? throw new ArgumentNullException(nameof(dt));
+    }
+
+    /// <summary>
+    ///     Занять кабинет пациентом
+    /// </summary>
+    /// <param name="dt"></param>
+    public void EnterCabient(Patient patient)
+    {
+        EnteringPatient = patient;
     }
 
     /// <summary>
@@ -60,7 +70,20 @@ public class Cabinet
     /// <returns>bool - true если занят иначе false</returns>
     public bool CabinetIsBusy(Doctor dt)
     {
+        if (dt == null) throw new ArgumentNullException(nameof(dt));
         if (AttachedDoctor == dt || AttachedDoctor == null) return false;
+        return true;
+    }
+
+    /// <summary>
+    ///     Занят ли кабинет
+    /// </summary>
+    /// <param name="dt">Экземпляр класса возможного пациента в кабинете</param>
+    /// <returns>bool - true если занят иначе false</returns>
+    public bool CabinetIsBusy(Patient patient)
+    {
+        if (patient == null) throw new ArgumentNullException(nameof(patient));
+        if (EnteringPatient == patient || EnteringPatient == null) return false;
         return true;
     }
 }

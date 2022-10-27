@@ -1,9 +1,6 @@
 ﻿using Healthcare.Database;
 using Healthcare.Json;
 using Healthcare.Logic;
-using Healthcare.Logic.Models;
-using Healthcare.Logic.Separations;
-using Healthcare.Logic.Separations.Models;
 using Healthcare.Notification;
 
 namespace Healthcare.Menu;
@@ -131,6 +128,7 @@ internal class Program
 
     private static Hospital? ParseFile(string path)
     {
+        if (string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));
         try
         {
             var hp = JsonConverter<Hospital>.DeserializeObject(path);

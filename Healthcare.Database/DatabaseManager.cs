@@ -50,6 +50,7 @@ public class DatabaseManager
     /// <param name="record">Экземпляр класса записи</param>
     public void SaveRecord(Record record)
     {
+        if (record == null) throw new ArgumentNullException(nameof(record));
         ApplicationContext.Records.Add(record);
         ApplicationContext.SaveChanges();
     }

@@ -17,7 +17,7 @@ public class Reception
     /// <summary>
     ///     Идентификационный номер
     /// </summary>
-    public Guid Id { get; set; }
+    public Guid Id { get; }
 
     /// <summary>
     ///     Исчисляемый список записей к врачам
@@ -34,15 +34,8 @@ public class Reception
     /// <returns>Статус заявки</returns>
     public TypeStatus RegistrationRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
     {
-        if (time.Minute % 15 != 0) return TypeStatus.ErrorTime;
-
-        if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
-            return TypeStatus.DoctorBusy;
-
-        if (!_bookRecords.Any(x => x.ResponsibleDoctor ==
-                doctor && x.RegisteredPatient == patient)
-            && !_bookRecords.Any(x => x.ResponsibleDoctor ==
-                doctor && x.RecordingTime.Hour == time.Hour && x.RecordingTime.Minute == time.Minute))
+        var resultCheck = CheckParametersRecord(doctor, patient, time, department);
+        if (resultCheck == TypeStatus.Successfully)
         {
             var record = department.AddRecord(doctor, patient, time);
             if (record != null)
@@ -54,7 +47,38 @@ public class Reception
             return TypeStatus.OfficesBusy;
         }
 
-        return TypeStatus.GeneralError;
+        return resultCheck;
+    }
+
+    private TypeStatus CheckParametersRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
+    {
+        if (!TestTime(time) || !CheckTimeDoctor(doctor, time)) return TypeStatus.ErrorTime;
+        if (CheckRecordInBook(doctor, patient, time)) return TypeStatus.DoctorBusy;
+        return TypeStatus.Successfully;
+    }
+
+    private bool TestTime(DateTime time)
+    {
+        if (time.Minute % 15 != 0) return false;
+        return true;
+    }
+
+    private bool CheckTimeDoctor(Doctor doctor, DateTime time)
+    {
+        if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
+            return false;
+        return true;
+    }
+
+    private bool CheckRecordInBook(Doctor doctor, Patient patient, DateTime time)
+    {
+        if (!_bookRecords.Any(x => x.ResponsibleDoctor ==
+                doctor && x.RegisteredPatient == patient)
+            && !_bookRecords.Any(x => x.ResponsibleDoctor ==
+                doctor && x.RecordingTime.Hour == time.Hour && x.RecordingTime.Minute == time.Minute))
+            return false;
+
+        return true;
     }
 
     /// <summary>

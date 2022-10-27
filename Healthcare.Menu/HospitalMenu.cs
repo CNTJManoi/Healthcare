@@ -205,7 +205,10 @@ internal class HospitalMenu
     private void WriteInFile()
     {
         Annunciator.Notify(JsonConverter<List<Record>>.SerializeObject(Hospital.ReceptionHospital.BookRecords.ToList()),
-            TypeNotification.File);
+            new List<TypeNotification>
+            {
+                TypeNotification.File
+            });
         PrintMessage("Успешно!");
     }
 }

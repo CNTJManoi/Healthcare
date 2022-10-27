@@ -15,9 +15,10 @@ public class Department : IDepartment
         string address, int numberOfFloors,
         TypeDepartment typeDepartment, Guid id)
     {
+        if (numberOfFloors < 0) throw new ArgumentOutOfRangeException(nameof(numberOfFloors));
         Id = id;
-        Name = name;
-        Address = address;
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+        Address = address ?? throw new ArgumentNullException(nameof(address));
         NumberOfFloors = numberOfFloors;
         TypeDepartment = typeDepartment;
     }
@@ -27,6 +28,9 @@ public class Department : IDepartment
         string address, int numberOfFloors,
         TypeDepartment typeDepartment, Guid id) : this(name, address, numberOfFloors, typeDepartment, id)
     {
+        if (cabinets == null) throw new ArgumentNullException(nameof(cabinets));
+        if (doctors == null) throw new ArgumentNullException(nameof(doctors));
+        if (patients == null) throw new ArgumentNullException(nameof(patients));
         _cabinets = cabinets.ToList();
         _doctors = doctors.ToList();
         _patients = patients.ToList();
@@ -78,6 +82,7 @@ public class Department : IDepartment
     /// <param name="cb">Экземпляр класса кабинета</param>
     public void AddCabinet(Cabinet cb)
     {
+        if (cb == null) throw new ArgumentNullException(nameof(cb));
         _cabinets.Add(cb);
     }
 
@@ -87,6 +92,7 @@ public class Department : IDepartment
     /// <param name="dt">Экземпляр класса доктора</param>
     public void AddDoctor(Doctor dt)
     {
+        if (dt == null) throw new ArgumentNullException(nameof(dt));
         _doctors.Add(dt);
     }
 
@@ -96,6 +102,7 @@ public class Department : IDepartment
     /// <param name="pt">Экземплр класса пациента</param>
     public void AddPatient(Patient pt)
     {
+        if (pt == null) throw new ArgumentNullException(nameof(pt));
         _patients.Add(pt);
     }
 
@@ -105,6 +112,7 @@ public class Department : IDepartment
     /// <param name="dt">Экземпляр класса доктора</param>
     public void DismissDoctor(Doctor dt)
     {
+        if (dt == null) throw new ArgumentNullException(nameof(dt));
         _doctors.Remove(dt);
     }
 
@@ -114,6 +122,7 @@ public class Department : IDepartment
     /// <param name="pt">Экземпляр класса пациента</param>
     public void DischargePatient(Patient pt)
     {
+        if (pt == null) throw new ArgumentNullException(nameof(pt));
         _patients.Remove(pt);
     }
 
@@ -126,10 +135,14 @@ public class Department : IDepartment
     /// <returns>Экземпляр класса записи</returns>
     public Record? AddRecord(Doctor doctor, Patient pt, DateTime dt)
     {
+        if (doctor == null) throw new ArgumentNullException(nameof(doctor));
+        if (pt == null) throw new ArgumentNullException(nameof(pt));
         foreach (var cabinet in _cabinets.Where(cabinet =>
                      cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor)))
-            //_cabinets[_cabinets.IndexOf(cabinet)].EnterCabient(doctor);
+        {
+            _cabinets[_cabinets.IndexOf(cabinet)].EnterCabient(doctor);
             return new Record(dt, Guid.NewGuid(), cabinet, doctor, pt);
+        }
 
         return null;
     }

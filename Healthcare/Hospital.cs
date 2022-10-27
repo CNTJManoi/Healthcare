@@ -10,7 +10,7 @@ public class Hospital
     public Hospital(Guid id, string name)
     {
         Id = id;
-        Name = name;
+        Name = name ?? throw new ArgumentNullException(nameof(name));
         ReceptionHospital = new Reception.Reception();
         _buildings = new List<IDepartment>();
     }

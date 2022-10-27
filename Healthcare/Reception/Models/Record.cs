@@ -14,9 +14,9 @@ public class Record
     public Record(DateTime recordingTime, Guid id,
         Cabinet attachedCabinet, Doctor responsibleDoctor, Patient registeredPatient) : this(recordingTime, id)
     {
-        AttachedCabinet = attachedCabinet;
-        ResponsibleDoctor = responsibleDoctor;
-        RegisteredPatient = registeredPatient;
+        AttachedCabinet = attachedCabinet ?? throw new ArgumentNullException(nameof(attachedCabinet));
+        ResponsibleDoctor = responsibleDoctor ?? throw new ArgumentNullException(nameof(responsibleDoctor));
+        RegisteredPatient = registeredPatient ?? throw new ArgumentNullException(nameof(registeredPatient));
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace Healthcare.Logic.Models;
+﻿using System.ComponentModel;
+
+namespace Healthcare.Logic.Models;
 
 public class Doctor : IPeople
 {
@@ -7,14 +9,14 @@ public class Doctor : IPeople
         string endWorkTime)
     {
         Id = new Guid();
-        Surname = surname;
-        Name = name;
-        Society = society;
-        Address = address;
-        Diplom = diplom;
+        Surname = surname ?? throw new ArgumentNullException(nameof(surname));
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+        Society = society ?? throw new ArgumentNullException(nameof(society));
+        Address = address ?? throw new ArgumentNullException(nameof(address));
+        Diplom = diplom ?? throw new ArgumentNullException(nameof(diplom));
         SpecializationDoctor = specializationDoctor;
-        BeginWorkTime = beginWorkTime;
-        EndWorkTime = endWorkTime;
+        BeginWorkTime = beginWorkTime ?? throw new ArgumentNullException(nameof(beginWorkTime));
+        EndWorkTime = endWorkTime ?? throw new ArgumentNullException(nameof(endWorkTime));
     }
 
     /// <summary>

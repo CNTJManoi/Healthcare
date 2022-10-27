@@ -5,10 +5,10 @@ public class Patient : IPeople
     public Patient(string surname, string name, string society, string address, Guid id)
     {
         Id = id;
-        Surname = surname;
-        Name = name;
-        Society = society;
-        Address = address;
+        Surname = surname ?? throw new ArgumentNullException(nameof(surname));
+        Name = name ?? throw new ArgumentNullException(nameof(name));
+        Society = society ?? throw new ArgumentNullException(nameof(society));
+        Address = address ?? throw new ArgumentNullException(nameof(address));
     }
 
     /// <summary>

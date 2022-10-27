@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Database", "Heal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Json", "Healthcare.Json\Healthcare.Json.csproj", "{6B5CCBA6-1CFD-4B62-A10A-59BC6F50CF5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Notification", "Healthcare.Notification\Healthcare.Notification.csproj", "{8B812079-1091-4E2D-8ACE-7C5704ABF104}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Notification", "Healthcare.Notification\Healthcare.Notification.csproj", "{8B812079-1091-4E2D-8ACE-7C5704ABF104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Tests", "Healthcare.Tests\Healthcare.Tests.csproj", "{0AE89ED8-7489-4A88-9E17-5E78200B79E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8B812079-1091-4E2D-8ACE-7C5704ABF104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B812079-1091-4E2D-8ACE-7C5704ABF104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B812079-1091-4E2D-8ACE-7C5704ABF104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
