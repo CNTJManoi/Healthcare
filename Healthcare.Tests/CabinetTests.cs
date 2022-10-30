@@ -15,10 +15,10 @@ public class CabinetTests
             , "999875", TypeDoctor.Surgeon, "08", "15");
         var doctorInCabinet = new Doctor("Владислава", "Елизавета", "Петровна", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var cb = new Cabinet(TypeDoctor.Surgeon, 101, doctorInCabinet, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, doctorInCabinet, null, Guid.NewGuid());
 
         // Act
-        var result = cb.CabinetIsBusy(doctor);
+        var result = sut.CabinetIsBusy(doctor);
 
         // Assert
         Assert.True(result);
@@ -30,10 +30,10 @@ public class CabinetTests
         // Arrange
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var cb = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
 
         // Act
-        var result = cb.CabinetIsBusy(doctor);
+        var result = sut.CabinetIsBusy(doctor);
 
         // Assert
         Assert.False(result);
@@ -45,13 +45,13 @@ public class CabinetTests
         // Arrange
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var cb = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
 
         // Act
-        cb.EnterCabient(doctor);
+        sut.EnterCabient(doctor);
 
         // Assert
-        Assert.False(cb.CabinetIsBusy(doctor));
+        Assert.False(sut.CabinetIsBusy(doctor));
     }
 
     [Fact]
@@ -59,12 +59,12 @@ public class CabinetTests
     {
         // Arrange
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
-        var cb = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
 
         // Act
-        cb.EnterCabient(patient);
+        sut.EnterCabient(patient);
 
         // Assert
-        Assert.False(cb.CabinetIsBusy(patient));
+        Assert.False(sut.CabinetIsBusy(patient));
     }
 }

@@ -18,12 +18,12 @@ public class DepartmentTests
             , "999875", TypeDoctor.Surgeon, "08", "15");
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
         List<Cabinet> cb1 = new() { new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid()) };
-        IDepartment dp = new Department(cb1, new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(cb1, new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
 
         // Act
-        var result = dp.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0));
+        var result = sut.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0));
 
         // Assert
         Assert.NotNull(result);
@@ -39,12 +39,12 @@ public class DepartmentTests
             , "999875", TypeDoctor.Surgeon, "08", "15");
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
         List<Cabinet> cb1 = new() { new Cabinet(TypeDoctor.Surgeon, 101, doctorInCabinet, null, Guid.NewGuid()) };
-        IDepartment dp = new Department(cb1, new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(cb1, new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
 
         // Act
-        var result = dp.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0));
+        var result = sut.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0));
 
         // Assert
         Assert.Null(result);
@@ -55,15 +55,15 @@ public class DepartmentTests
     {
         // Arrange
         var cb = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
-        IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
 
         // Act
-        dp.AddCabinet(cb);
+        sut.AddCabinet(cb);
 
         // Assert
-        Assert.Contains(cb, dp.Cabinets);
+        Assert.Contains(cb, sut.Cabinets);
     }
 
     [Fact]
@@ -72,15 +72,15 @@ public class DepartmentTests
         // Arrange
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
 
         // Act
-        dp.AddDoctor(doctor);
+        sut.AddDoctor(doctor);
 
         // Assert
-        Assert.Contains(doctor, dp.Doctors);
+        Assert.Contains(doctor, sut.Doctors);
     }
 
     [Fact]
@@ -88,15 +88,15 @@ public class DepartmentTests
     {
         // Arrange
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
-        IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
 
         // Act
-        dp.AddPatient(patient);
+        sut.AddPatient(patient);
 
         // Assert
-        Assert.Contains(patient, dp.Patients);
+        Assert.Contains(patient, sut.Patients);
     }
 
     [Fact]
@@ -105,16 +105,16 @@ public class DepartmentTests
         // Arrange
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
-        dp.AddDoctor(doctor);
+        sut.AddDoctor(doctor);
 
         // Act
-        dp.DismissDoctor(doctor);
+        sut.DismissDoctor(doctor);
 
         // Assert
-        Assert.DoesNotContain(doctor, dp.Doctors);
+        Assert.DoesNotContain(doctor, sut.Doctors);
     }
 
     [Fact]
@@ -122,15 +122,15 @@ public class DepartmentTests
     {
         // Arrange
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
-        IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
+        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
-        dp.AddPatient(patient);
+        sut.AddPatient(patient);
 
         // Act
-        dp.DischargePatient(patient);
+        sut.DischargePatient(patient);
 
         // Assert
-        Assert.DoesNotContain(patient, dp.Patients);
+        Assert.DoesNotContain(patient, sut.Patients);
     }
 }
