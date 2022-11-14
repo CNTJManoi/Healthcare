@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Healthcare.Logic;
 using Healthcare.Logic.Models;
 using Healthcare.Logic.Separations;
 using Healthcare.Logic.Separations.Base;
 using Healthcare.Logic.Separations.Models;
 using Xunit;
 
-namespace Healthcare.Tests;
+namespace Healthcare.Logic.Tests;
 
 public class HospitalTests
 {

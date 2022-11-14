@@ -1,4 +1,5 @@
 ﻿using Healthcare.Logic;
+using Healthcare.Logic.Models;
 
 namespace Healthcare.Menu;
 
@@ -45,5 +46,54 @@ internal class GetHospitalInfo
                    record.RecordingTime.Minute + " в кабинете номер " +
                    record.AttachedCabinet.Number + "\n";
         return str;
+    }
+
+
+    public string GetDoctorSpecilialization(Doctor dt)
+    {
+        return dt.SpecializationDoctor switch
+        {
+            TypeDoctor.Therapist => "Терапевт",
+            TypeDoctor.Paramedic => "Фельдшер",
+            TypeDoctor.Gynecologist => "Гинеколог",
+            TypeDoctor.Optometrist => "Окулист",
+            TypeDoctor.Surgeon => "Хирург",
+            TypeDoctor.Nurse => "Медсестра/Медбрат",
+            _ => string.Empty
+        };
+    }
+
+    public string GetDoctorsDepartmentList(int choose)
+    {
+        var numberDoctor = 1;
+        var res = "";
+        foreach (var doctor in Hospital.Buildings.ToList()[choose - 1].Doctors)
+        {
+            var spec = GetDoctorSpecilialization(doctor);
+
+            res += numberDoctor + ". " + spec + " " + doctor.FullName + " время работы "
+                   + doctor.BeginWorkTime + "-" + doctor.EndWorkTime + "\n";
+            numberDoctor++;
+        }
+
+
+        return res;
+    }
+
+    public string GetAllDoctors()
+    {
+        var numberDoctor = 1;
+        var res = "";
+        foreach (var department in Hospital.Buildings.ToList())
+        foreach (var doctor in department.Doctors)
+        {
+            var spec = GetDoctorSpecilialization(doctor);
+            res += numberDoctor + ". " + spec + " " + doctor.FullName + " время работы "
+                   + doctor.BeginWorkTime + "-" + doctor.EndWorkTime + "\n";
+            numberDoctor++;
+        }
+
+
+        return res;
     }
 }

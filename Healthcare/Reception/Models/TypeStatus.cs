@@ -5,6 +5,5 @@ public enum TypeStatus
     Successfully,
     ErrorTime,
     DoctorBusy,
-    OfficesBusy,
-    GeneralError
+    OfficesBusy
 }

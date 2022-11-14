@@ -55,7 +55,7 @@ internal class HospitalMenu
         OptionsMenu.Add(new OptionMenu(() =>
             Enroll(), "Записаться к врачу"));
         OptionsMenu.Add(new OptionMenu(() =>
-            PrintMessage(GetAllDoctors()
+            PrintMessage(HospitalInfo.GetAllDoctors()
             ), "Посмотреть врачей больницы"));
         OptionsMenu.Add(new OptionMenu(() =>
             PrintMessage(HospitalInfo.GetPatientsList()
@@ -110,7 +110,7 @@ internal class HospitalMenu
         if (choose == 0) return;
         var numberDepartment = choose;
         PrintMessage("Выберите врача отделения:");
-        PrintMessage(GetDoctorsDepartmentList(choose));
+        PrintMessage(HospitalInfo.GetDoctorsDepartmentList(choose));
         PrintMessage("\n0 для выхода в основное меню..");
         choose = ChooseOption();
         while (!(choose <= Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.Count() && choose >= 0))
@@ -137,9 +137,6 @@ internal class HospitalMenu
             case TypeStatus.ErrorTime:
                 PrintMessage("Можно записаться лишь на 0, 15, 30, 45 минуты часа...");
                 break;
-            case TypeStatus.GeneralError:
-                PrintMessage("Выберите другое время!");
-                break;
             case TypeStatus.OfficesBusy:
                 PrintMessage("Все кабинеты заняты!");
                 break;
@@ -147,54 +144,6 @@ internal class HospitalMenu
                 PrintMessage("Попробуйте еще раз!");
                 break;
         }
-    }
-
-    private string GetDoctorSpecilialization(Doctor dt)
-    {
-        return dt.SpecializationDoctor switch
-        {
-            TypeDoctor.Therapist => "Терапевт",
-            TypeDoctor.Paramedic => "Фельдшер",
-            TypeDoctor.Gynecologist => "Гинеколог",
-            TypeDoctor.Optometrist => "Окулист",
-            TypeDoctor.Surgeon => "Хирург",
-            TypeDoctor.Nurse => "Медсестра/Медбрат",
-            _ => string.Empty
-        };
-    }
-
-    private string GetDoctorsDepartmentList(int choose)
-    {
-        var numberDoctor = 1;
-        var res = "";
-        foreach (var doctor in Hospital.Buildings.ToList()[choose - 1].Doctors)
-        {
-            var spec = GetDoctorSpecilialization(doctor);
-
-            res += numberDoctor + ". " + spec + " " + doctor.FullName + " время работы "
-                   + doctor.BeginWorkTime + "-" + doctor.EndWorkTime + "\n";
-            numberDoctor++;
-        }
-
-
-        return res;
-    }
-
-    private string GetAllDoctors()
-    {
-        var numberDoctor = 1;
-        var res = "";
-        foreach (var department in Hospital.Buildings.ToList())
-        foreach (var doctor in department.Doctors)
-        {
-            var spec = GetDoctorSpecilialization(doctor);
-            res += numberDoctor + ". " + spec + " " + doctor.FullName + " время работы "
-                   + doctor.BeginWorkTime + "-" + doctor.EndWorkTime + "\n";
-            numberDoctor++;
-        }
-
-
-        return res;
     }
 
     private void PrintMessage(string text)

@@ -3,7 +3,7 @@ using Healthcare.Logic.Models;
 using Healthcare.Logic.Separations.Models;
 using Xunit;
 
-namespace Healthcare.Tests;
+namespace Healthcare.Logic.Tests;
 
 public class CabinetTests
 {
@@ -24,7 +24,7 @@ public class CabinetTests
         Assert.True(result);
     }
 
-    [Fact]
+    [Fact]  
     public void NoDoctorInCabinetTest()
     {
         // Arrange

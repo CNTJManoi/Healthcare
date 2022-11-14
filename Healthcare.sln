@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Json", "Healthca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Notification", "Healthcare.Notification\Healthcare.Notification.csproj", "{8B812079-1091-4E2D-8ACE-7C5704ABF104}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Tests", "Healthcare.Tests\Healthcare.Tests.csproj", "{0AE89ED8-7489-4A88-9E17-5E78200B79E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Logic.Tests", "Healthcare.Tests\Healthcare.Logic.Tests.csproj", "{0AE89ED8-7489-4A88-9E17-5E78200B79E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

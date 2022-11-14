@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Healthcare.Logic.Models;
+﻿namespace Healthcare.Logic.Models;
 
 public class Doctor : IPeople
 {

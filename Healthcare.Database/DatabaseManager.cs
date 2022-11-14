@@ -1,4 +1,4 @@
-﻿    using Healthcare.Logic;
+﻿using Healthcare.Logic;
 using Healthcare.Logic.Reception.Models;
 using Microsoft.EntityFrameworkCore;
 

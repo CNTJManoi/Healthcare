@@ -6,7 +6,7 @@ using Healthcare.Logic.Separations.Base;
 using Healthcare.Logic.Separations.Models;
 using Xunit;
 
-namespace Healthcare.Tests;
+namespace Healthcare.Logic.Tests;
 
 public class DepartmentTests
 {

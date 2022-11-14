@@ -107,7 +107,7 @@ internal class Program
         //    hp.AddDepartment(new Department(cb3, d3, new List<Patient>()
         //        {
         //            new Patient("Полином", "Полина", "Вячеславовна", "Богдана Хмельницкого 21 кв 195", Guid.NewGuid())
-        //        }, "Терапевтическое отделение <Смешила что ты сделал>", "Свердловская 10/3",
+        //        }, "Терапевтическое отделение <Спешилов что ты сделал>", "Свердловская 10/3",
         //        1, TypeDepartment.Polyclinic, Guid.NewGuid()));
         //an.Notify(JsonConverter<Hospital>.SerializeObject(hp), TypeNotification.File);
         ////ApplicationContext db = new ApplicationContext();
