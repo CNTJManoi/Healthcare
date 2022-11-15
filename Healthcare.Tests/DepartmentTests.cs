@@ -21,12 +21,15 @@ public class DepartmentTests
         IDepartment sut = new Department(cb1, new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
+        DateTime dataRegister = new DateTime(2022, 10, 27, 10, 15, 0);
 
         // Act
-        var result = sut.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0));
+        var result = sut.AddRecord(doctor, patient, dataRegister);
 
         // Assert
-        Assert.NotNull(result);
+        Assert.Equal(doctor, result.ResponsibleDoctor);
+        Assert.Equal(patient, result.RegisteredPatient);
+        Assert.Equal(dataRegister, result.RecordingTime);
     }
 
     [Fact]
@@ -43,11 +46,9 @@ public class DepartmentTests
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
 
-        // Act
-        var result = sut.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0));
-
-        // Assert
-        Assert.Null(result);
+        // Act + Assert
+        Assert.Throws<ArgumentNullException>(() =>
+            sut.AddRecord(doctor, patient, new DateTime(2022, 10, 27, 10, 15, 0)));
     }
 
     [Fact]

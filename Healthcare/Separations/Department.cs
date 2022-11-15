@@ -133,7 +133,7 @@ public class Department : IDepartment
     /// <param name="pt">Экземпляр класса пациента</param>
     /// <param name="dt">Время записи</param>
     /// <returns>Экземпляр класса записи</returns>
-    public Record? AddRecord(Doctor doctor, Patient pt, DateTime dt)
+    public Record AddRecord(Doctor doctor, Patient pt, DateTime dt)
     {
         if (doctor == null) throw new ArgumentNullException(nameof(doctor));
         if (pt == null) throw new ArgumentNullException(nameof(pt));
@@ -144,6 +144,6 @@ public class Department : IDepartment
             return new Record(dt, Guid.NewGuid(), cabinet, doctor, pt);
         }
 
-        return null;
+        throw new ArgumentNullException(nameof(Record));
     }
 }

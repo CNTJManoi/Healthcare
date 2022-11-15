@@ -60,6 +60,7 @@ public class Cabinet
     /// <param name="dt"></param>
     public void EnterCabient(Patient patient)
     {
+        if(AttachedDoctor == null) throw new ArgumentNullException(nameof(AttachedDoctor));
         EnteringPatient = patient;
     }
 
