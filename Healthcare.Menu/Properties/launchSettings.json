@@ -3,6 +3,11 @@
     "Healthcare.Menu": {
       "commandName": "Project",
       "commandLineArgs": "Hospital.json Result.json"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {},
+      "distributionName": ""
     }
   }
 }

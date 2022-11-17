@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Notification", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthcare.Logic.Tests", "Healthcare.Tests\Healthcare.Logic.Tests.csproj", "{0AE89ED8-7489-4A88-9E17-5E78200B79E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.WPF", "Healthcare.WPF\Healthcare.WPF.csproj", "{27926026-E8C4-41DF-8741-FCB935D51576}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthcare.Authentication", "Healthcare.Authentication\Healthcare.Authentication.csproj", "{10F6218B-5D78-4E1E-B3BD-3FFBDAA4D16A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AE89ED8-7489-4A88-9E17-5E78200B79E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27926026-E8C4-41DF-8741-FCB935D51576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27926026-E8C4-41DF-8741-FCB935D51576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27926026-E8C4-41DF-8741-FCB935D51576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27926026-E8C4-41DF-8741-FCB935D51576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10F6218B-5D78-4E1E-B3BD-3FFBDAA4D16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F6218B-5D78-4E1E-B3BD-3FFBDAA4D16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F6218B-5D78-4E1E-B3BD-3FFBDAA4D16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F6218B-5D78-4E1E-B3BD-3FFBDAA4D16A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
