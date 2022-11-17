@@ -21,7 +21,7 @@ public class DepartmentTests
         IDepartment sut = new Department(cb1, new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
-        DateTime dataRegister = new DateTime(2022, 10, 27, 10, 15, 0);
+        var dataRegister = new DateTime(2022, 10, 27, 10, 15, 0);
 
         // Act
         var result = sut.AddRecord(doctor, patient, dataRegister);

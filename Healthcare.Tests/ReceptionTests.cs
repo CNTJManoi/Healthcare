@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Healthcare.Logic.Models;
 using Healthcare.Logic.Reception.Models;
-using Healthcare.Logic.Separations;
-using Healthcare.Logic.Separations.Models;
 using Healthcare.Logic.Tests.Builder;
 using Xunit;
 
@@ -12,14 +8,16 @@ namespace Healthcare.Logic.Tests;
 
 public class ReceptionTests
 {
-    private HospitalBuilder _builder = new HospitalBuilder();
+    private readonly HospitalBuilder _builder = new();
+
     [Fact]
     public void ReceptionCheckTrueRegistrationRecord()
     {
         // Arrange
         var sut = _builder.BuildHospital();
         // Act
-        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0], sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
+        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+            sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
 
         // Assert
@@ -32,7 +30,8 @@ public class ReceptionTests
         // Arrange
         var sut = _builder.BuildHospital();
         // Act
-        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0], sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 04, 15, 0),
+        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+            sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 04, 15, 0),
             sut.Buildings.ToList()[0]);
 
         // Assert
@@ -44,10 +43,12 @@ public class ReceptionTests
     {
         // Arrange
         var sut = _builder.BuildHospital();
-        sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0], sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
+        sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+            sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
         // Act
-        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0], sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
+        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+            sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
 
         // Assert

@@ -1,60 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Healthcare.Logic.Models;
 using Healthcare.Logic.Separations;
 using Healthcare.Logic.Separations.Base;
 using Healthcare.Logic.Separations.Models;
 
-namespace Healthcare.Logic.Tests.Builder
+namespace Healthcare.Logic.Tests.Builder;
+
+internal class HospitalBuilder
 {
-    internal class HospitalBuilder
+    private Hospital Hospital { get; set; }
+
+    private IDepartment BuildDepartmentPart()
     {
-        private Hospital Hospital { get; set; }
+        IDepartment dp = new Department(BuildListCabinets(), BuildListDoctor(), BuildListPatients()
+            , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
+            TypeDepartment.Therapeutic, Guid.NewGuid());
+        return dp;
+    }
 
-        private IDepartment BuildDepartmentPart()
+    private List<Patient> BuildListPatients()
+    {
+        return new List<Patient>
         {
-            IDepartment dp = new Department(BuildListCabinets(), BuildListDoctor(), BuildListPatients()
-                , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
-                TypeDepartment.Therapeutic, Guid.NewGuid());
-            return dp;
-        }
+            new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid()),
+            new("Лебедев", "Артём", "Викторович", "Многоножная 12", Guid.NewGuid())
+        };
+    }
 
-        private List<Patient> BuildListPatients()
+    private List<Doctor> BuildListDoctor()
+    {
+        return new List<Doctor>
         {
-            return new List<Patient>
-            {
-                new Patient("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid()),
-                new Patient("Лебедев", "Артём", "Викторович", "Многоножная 12", Guid.NewGuid())
-            };
-        }
+            new("Потапов", "Алексей", "Даниилович", "Светлая 12"
+                , "654767", TypeDoctor.Paramedic, "09", "15"),
+            new("Озеров", "Захар", "Максимович", "Светлая 13"
+                , "998234", TypeDoctor.Paramedic, "10", "15")
+        };
+    }
 
-        private List<Doctor> BuildListDoctor()
+    private List<Cabinet> BuildListCabinets()
+    {
+        return new List<Cabinet>
         {
-            return new List<Doctor>()
-            {
-                new Doctor("Потапов", "Алексей", "Даниилович", "Светлая 12"
-                    , "654767", TypeDoctor.Paramedic, "09", "15"),
-                new Doctor("Озеров", "Захар", "Максимович", "Светлая 13"
-                    , "998234", TypeDoctor.Paramedic, "10", "15")
-            };
+            new(TypeDoctor.Paramedic, 101, null, null, Guid.NewGuid())
+        };
+    }
 
-        }
-
-        private List<Cabinet> BuildListCabinets()
-        {
-            return new List<Cabinet>()
-            {
-                new Cabinet(TypeDoctor.Paramedic, 101, null, null, Guid.NewGuid())
-            };
-        }
-        public Hospital BuildHospital()
-        {
-            Hospital = new Hospital(Guid.NewGuid(), "Солнышко");
-            Hospital.AddDepartment(BuildDepartmentPart());
-            return Hospital;
-        }
+    public Hospital BuildHospital()
+    {
+        Hospital = new Hospital(Guid.NewGuid(), "Солнышко");
+        Hospital.AddDepartment(BuildDepartmentPart());
+        return Hospital;
     }
 }

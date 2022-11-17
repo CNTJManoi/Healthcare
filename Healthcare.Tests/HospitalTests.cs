@@ -12,12 +12,13 @@ namespace Healthcare.Logic.Tests;
 
 public class HospitalTests
 {
-    private HospitalBuilder _builder = new HospitalBuilder();
+    private readonly HospitalBuilder _builder = new();
+
     [Fact]
     public void HospitalAddDepartmentTest()
     {
         // Arrange
-        Hospital sut = _builder.BuildHospital();
+        var sut = _builder.BuildHospital();
         IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
             TypeDepartment.Therapeutic, Guid.NewGuid());
@@ -33,7 +34,7 @@ public class HospitalTests
     public void HospitalAddPatientTest()
     {
         // Arrange
-        Hospital sut = _builder.BuildHospital();
+        var sut = _builder.BuildHospital();
         Patient p = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
 
         // Act
@@ -47,7 +48,7 @@ public class HospitalTests
     public void HospitalAddDoctorTest()
     {
         // Arrange
-        Hospital sut = _builder.BuildHospital();
+        var sut = _builder.BuildHospital();
         var df1 = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
 

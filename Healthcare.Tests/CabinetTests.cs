@@ -14,11 +14,12 @@ public class CabinetTests
         Assert.Throws<ArgumentOutOfRangeException>(() =>
             new Cabinet(TypeDoctor.Surgeon, -1, null, null, Guid.NewGuid()));
     }
+
     [Fact]
     public void TestAlreadyDoctorInCabinet()
     {
         // Arrange
-       // Guid cabinetId = new Guid(2, 5, 5);
+        // Guid cabinetId = new Guid(2, 5, 5);
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         var doctorInCabinet = new Doctor("Владислава", "Елизавета", "Петровна", "Светлая 15"
@@ -32,7 +33,7 @@ public class CabinetTests
         Assert.True(result);
     }
 
-    [Fact]  
+    [Fact]
     public void TestNoDoctorInCabinet()
     {
         // Arrange
@@ -105,6 +106,6 @@ public class CabinetTests
         // Act+Assert
         Assert.Throws<ArgumentNullException>(
             () => sut.EnterCabient(patient)
-            );
+        );
     }
 }
