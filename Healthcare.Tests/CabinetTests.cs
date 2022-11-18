@@ -10,21 +10,23 @@ public class CabinetTests
     [Fact]
     public void TestCreatingAccountWithImpossibleNumber()
     {
+        // Arrange
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         // Arrange + Act + Assert
         Assert.Throws<ArgumentOutOfRangeException>(() =>
-            new Cabinet(TypeDoctor.Surgeon, -1, null, null, Guid.NewGuid()));
+            new Cabinet(TypeDoctor.Surgeon, -1, null, null, id));
     }
 
     [Fact]
     public void TestAlreadyDoctorInCabinet()
     {
         // Arrange
-        // Guid cabinetId = new Guid(2, 5, 5);
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         var doctorInCabinet = new Doctor("Владислава", "Елизавета", "Петровна", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var sut = new Cabinet(TypeDoctor.Surgeon, 101, doctorInCabinet, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, doctorInCabinet, null, id);
 
         // Act
         var result = sut.CabinetIsBusy(doctor);
@@ -37,9 +39,10 @@ public class CabinetTests
     public void TestNoDoctorInCabinet()
     {
         // Arrange
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, id);
 
         // Act
         var result = sut.CabinetIsBusy(doctor);
@@ -52,9 +55,10 @@ public class CabinetTests
     public void TestEnterDoctorCabinetTest()
     {
         // Arrange
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, id);
 
         // Act
         sut.EnterCabient(doctor);
@@ -67,10 +71,11 @@ public class CabinetTests
     public void TestEnterPatientCabinetTest()
     {
         // Arrange
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
-        var sut = new Cabinet(TypeDoctor.Surgeon, 101, doctor, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, doctor, null, id);
 
         // Act
         sut.EnterCabient(patient);
@@ -83,9 +88,10 @@ public class CabinetTests
     public void TestEnteredTheSameDoctor()
     {
         // Arrange
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
-        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, id);
         sut.EnterCabient(doctor);
 
         // Act
@@ -99,8 +105,9 @@ public class CabinetTests
     public void TestEnterCabinetWithoutDoctor()
     {
         // Arrange
+        Guid id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
-        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
+        var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, id);
 
 
         // Act+Assert

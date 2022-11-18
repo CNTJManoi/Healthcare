@@ -16,7 +16,7 @@ public class DatabaseManager
     /// <summary>
     ///     Загрузить данные с базы данных
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Экземпляр класса больницы с загруженными данными</returns>
     public Hospital LoadDatabase()
     {
         try

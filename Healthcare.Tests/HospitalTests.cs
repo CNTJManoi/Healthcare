@@ -18,10 +18,11 @@ public class HospitalTests
     public void HospitalAddDepartmentTest()
     {
         // Arrange
+        Guid idDp = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
         var sut = _builder.BuildHospital();
         IDepartment dp = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
-            TypeDepartment.Therapeutic, Guid.NewGuid());
+            TypeDepartment.Therapeutic, idDp);
 
         // Act
         sut.AddDepartment(dp);
@@ -34,8 +35,9 @@ public class HospitalTests
     public void HospitalAddPatientTest()
     {
         // Arrange
+        Guid idPatient = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
         var sut = _builder.BuildHospital();
-        Patient p = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
+        Patient p = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", idPatient);
 
         // Act
         sut.AddPatient(p, 1);

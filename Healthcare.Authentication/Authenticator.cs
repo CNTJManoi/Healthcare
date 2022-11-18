@@ -1,6 +1,6 @@
 ﻿namespace Healthcare.Authentication
 {
-    public class Class1
+    public class Authenticator
     {
 
     }
