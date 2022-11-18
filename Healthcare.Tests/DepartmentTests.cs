@@ -14,9 +14,9 @@ public class DepartmentTests
     public void DepartmentRegisterRecordWithFreeCabinet()
     {
         // Arrange
-        Guid idPatient = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
-        Guid idCabinet = new Guid("936DA01F-9ABD-4d9d-80C7-02AF85C822A8");
-        Guid idSut = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
+        Guid idPatient = new Guid(6, 12, 22, new byte[] { 2,3,4,5,6,7,8,9});
+        Guid idCabinet = new Guid(3, 10, 20, new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+        Guid idSut = new Guid(9, 12, 15, new byte[] { 8,7,6,5,4,3,2,1 });
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", idPatient);
@@ -39,9 +39,9 @@ public class DepartmentTests
     public void DepartmentRegisterRecordWithBusyCabinet()
     {
         // Arrange
-        Guid idPatient = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
-        Guid idCabinet = new Guid("936DA01F-9ABD-4d9d-80C7-02AF85C822A8");
-        Guid idSut = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
+        Guid idPatient = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
+        Guid idCabinet = new Guid(3, 10, 20, new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+        Guid idSut = new Guid(9, 12, 15, new byte[] { 8, 7, 6, 5, 4, 3, 2, 1 });
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         var doctorInCabinet = new Doctor("Владислава", "Елизавета", "Петровна", "Светлая 15"
@@ -61,10 +61,11 @@ public class DepartmentTests
     public void DepartmentAddCabinet()
     {
         // Arrange
+        Guid idCabinet = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
         var cb = new Cabinet(TypeDoctor.Surgeon, 101, null, null, Guid.NewGuid());
         IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
-            TypeDepartment.Therapeutic, Guid.NewGuid());
+            TypeDepartment.Therapeutic, idCabinet);
 
         // Act
         sut.AddCabinet(cb);
@@ -77,7 +78,7 @@ public class DepartmentTests
     public void DepartmentAddDoctor()
     {
         // Arrange
-        Guid idDoctor = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
+        Guid idDoctor = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
@@ -95,7 +96,7 @@ public class DepartmentTests
     public void DepartmentAddPatient()
     {
         // Arrange
-        Guid idPatient = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
+        Guid idPatient = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
         IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
@@ -112,7 +113,7 @@ public class DepartmentTests
     public void DepartmentDismissDoctor()
     {
         // Arrange
-        Guid idDoctor = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
+        Guid idDoctor = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
@@ -131,7 +132,7 @@ public class DepartmentTests
     public void DepartmentDischargePatient()
     {
         // Arrange
-        Guid idSut = new Guid("B9213C5E-CEB2-4faa-A9T1-329CQ12FA1E4");
+        Guid idSut = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
         Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
         IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
             , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
