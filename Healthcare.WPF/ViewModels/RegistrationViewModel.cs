@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Healthcare.WPF.ViewModels
 {
-    internal class MainWindowView : ViewModelBase
+    internal class RegistrationViewModel : ViewModelBase
     {
-        public MainWindowView()
-        {
-            
-        }
+
     }
 }

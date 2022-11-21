@@ -4,7 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Healthcare.WPF.Views"
+        xmlns:localModel="clr-namespace:Healthcare.WPF.ViewModels"
+        xmlns:pages="clr-namespace:Healthcare.WPF.Views.Pages"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" FontFamily="Georgia">
-    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type localModel:RegistrationViewModel}">
+            <pages:RegistrationView/>
+        </DataTemplate>
+</Window.Resources>
+    <Grid>
+        <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
+    </Grid>
 </Window>
