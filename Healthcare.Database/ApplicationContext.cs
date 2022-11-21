@@ -1,4 +1,5 @@
-﻿using Healthcare.Logic;
+﻿using Healthcare.Database.Models;
+using Healthcare.Logic;
 using Healthcare.Logic.Models;
 using Healthcare.Logic.Reception.Models;
 using Healthcare.Logic.Separations;
@@ -16,6 +17,7 @@ public class ApplicationContext : DbContext
     public DbSet<Record> Records => Set<Record>();
     public DbSet<Department> Departments => Set<Department>();
     public DbSet<Hospital> Hospital => Set<Hospital>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -79,6 +81,17 @@ public class ApplicationContext : DbContext
                 b.HasOne(b => b.ResponsibleDoctor);
                 b.Property(b => b.RecordingTime);
                 b.HasOne(b => b.AttachedCabinet);
+            });
+        modelBuilder.Entity<User>(
+            b =>
+            {
+                b.HasKey("Id");
+                b.Property(b => b.Username);
+                b.Property(b => b.Password);
+                b.Property(b => b.Email);
+                b.Property(b => b.Telephone);
+                b.Property(b => b.ConfirmEmail);
+
             });
     }
 

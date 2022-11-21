@@ -25,7 +25,7 @@ public class ReceptionTests
     }
 
     [Fact]
-    public void ReceptionCheckRegistrationRecordWithErrorTime()
+        public void ReceptionCheckRegistrationRecordDuringNonWorkingTimeDoctor()
     {
         // Arrange
         var sut = _builder.BuildHospital();

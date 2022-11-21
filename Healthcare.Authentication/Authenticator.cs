@@ -1,4 +1,4 @@
-﻿namespace Healthcare.Authentication
+﻿    namespace Healthcare.Authentication
 {
     public class Authenticator
     {

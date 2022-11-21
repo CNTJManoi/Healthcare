@@ -7,4 +7,19 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Icons\Profile.png" />
+    <None Remove="Views\Home.ico" />
+    <None Remove="Views\Home.png" />
+    <None Remove="Views\info.png" />
+    <None Remove="Views\recordDoctor.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\Home.png" />
+    <Resource Include="Icons\Profile.png" />
+    <Resource Include="Icons\RecordDoctor.png" />
+    <Resource Include="Icons\Info.png" />
+  </ItemGroup>
+
 </Project>
