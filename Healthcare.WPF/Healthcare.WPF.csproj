@@ -12,6 +12,7 @@
     <None Remove="Views\Home.ico" />
     <None Remove="Views\Home.png" />
     <None Remove="Views\info.png" />
+    <None Remove="Views\Pages\Arrow.png" />
     <None Remove="Views\recordDoctor.png" />
   </ItemGroup>
 
@@ -20,6 +21,7 @@
     <Resource Include="Icons\Profile.png" />
     <Resource Include="Icons\RecordDoctor.png" />
     <Resource Include="Icons\Info.png" />
+    <Resource Include="Views\Pages\Arrow.png" />
   </ItemGroup>
 
 </Project>

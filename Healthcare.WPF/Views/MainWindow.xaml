@@ -12,6 +12,9 @@
         <DataTemplate DataType="{x:Type localModel:RegistrationViewModel}">
             <pages:RegistrationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type localModel:AuthViewModel}">
+            <pages:AuthView/>
+        </DataTemplate>
 </Window.Resources>
     <Grid>
         <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>

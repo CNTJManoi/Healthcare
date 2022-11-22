@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Healthcare.WPF.ViewModels;
 
 namespace Healthcare.WPF
 {
@@ -13,5 +14,6 @@ namespace Healthcare.WPF
     /// </summary>
     public partial class App : Application
     {
+        public static NavigationViewModel NavigationViewModel { get; set; }
     }
 }

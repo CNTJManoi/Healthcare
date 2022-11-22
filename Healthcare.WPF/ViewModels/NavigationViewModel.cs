@@ -9,31 +9,26 @@ using Healthcare.WPF.Command;
 
 namespace Healthcare.WPF.ViewModels
 {
-    class NavigationViewModel : ViewModelBase
+    public class NavigationViewModel : ViewModelBase
     {
-        private DelegateCommand _registrationCommand;
-        public DelegateCommand ButtonBegins => _registrationCommand ?? 
-                                               (_registrationCommand = new DelegateCommand(OpenRegistration));
-
         private object _selectedViewModel;
-
         public object SelectedViewModel
         {
             get { return _selectedViewModel; }
-            set { _selectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
+            private set { _selectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
         }
-
-
-
         public NavigationViewModel()
         {
-            SelectedViewModel = new RegistrationViewModel();
+            OpenAuth();
         }
 
-        private void OpenRegistration(object obj)
+        public void OpenRegistration()
         {
             SelectedViewModel = new RegistrationViewModel();
         }
-
+        public void OpenAuth()
+        {
+            SelectedViewModel = new AuthViewModel();
+        }
     }
 }

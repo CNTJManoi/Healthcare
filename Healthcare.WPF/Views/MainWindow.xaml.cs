@@ -23,7 +23,9 @@ namespace Healthcare.WPF.Views
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new NavigationViewModel();
+            NavigationViewModel navigation = new NavigationViewModel();
+            App.NavigationViewModel = navigation;
+            this.DataContext = navigation;
         }
     }
 }

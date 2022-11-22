@@ -17,14 +17,13 @@ using Healthcare.WPF.ViewModels;
 namespace Healthcare.WPF.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для RegistrationView.xaml
+    /// Логика взаимодействия для AuthView.xaml
     /// </summary>
-    public partial class RegistrationView : UserControl
+    public partial class AuthView : UserControl
     {
-        public RegistrationView()
+        public AuthView()
         {
             InitializeComponent();
-            this.DataContext = new RegistrationViewModel();
         }
     }
 }

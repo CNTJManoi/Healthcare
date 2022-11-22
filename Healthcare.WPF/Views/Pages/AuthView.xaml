@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Healthcare.WPF.Views.Pages.AuthView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Healthcare.WPF.Views.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" FontFamily="Georgia">
+    <Grid Background="#FF2D323E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"></RowDefinition>
+            <RowDefinition Height="180*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Авторизация" Foreground="#FF616B77" HorizontalAlignment="Center" Margin="0,10,0,10" FontSize="24"></TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="208" Margin="0,0,0,0" Width="448" Grid.RowSpan="2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                    <TextBlock Text="Имя пользователя: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                    <TextBox Width="150" FontSize="20" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                    <TextBlock Text="Пароль: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                    <PasswordBox Width="150" FontSize="20" ></PasswordBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                    <TextBlock Text="Запомнить пароль " VerticalAlignment="Stretch" FontSize="20" Foreground="White" TextWrapping="Wrap"/>
+                    <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                </StackPanel>
+                <Button Content="Подтвердить" FontSize="20" Margin="0,5,0,5" Background="White"></Button>
+                <Button Command="{Binding RegistrationCommand}" Content="Зарегистрироваться" FontSize="20" Margin="0,5,0,5" Background="White"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

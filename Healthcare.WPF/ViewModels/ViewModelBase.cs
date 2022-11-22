@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Healthcare.WPF.ViewModels
 {
-    internal abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
