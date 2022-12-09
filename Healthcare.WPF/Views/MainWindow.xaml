@@ -15,8 +15,13 @@
         <DataTemplate DataType="{x:Type localModel:AuthViewModel}">
             <pages:AuthView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type localModel:MainPageViewModel}">
+            <pages:MainPage/>
+        </DataTemplate>
 </Window.Resources>
     <Grid>
-        <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
+        <Viewbox Stretch="Fill">
+            <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" Opacity="{Binding OpacityValue}" Height="434" Width="800"/>
+        </Viewbox>
     </Grid>
 </Window>

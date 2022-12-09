@@ -38,40 +38,42 @@
         <StackPanel Grid.ColumnSpan="2">
             <TextBlock Text="Регистрация" Foreground="#FF616B77" HorizontalAlignment="Center" Margin="0,10,0,10" FontSize="24"></TextBlock>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="69,13,0,0" Grid.Row="1" Grid.Column="1" Height="278" Width="448">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="Имя пользователя: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
-                    <TextBox Width="200" FontSize="20" ></TextBox>
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="50,30,50,30" Grid.ColumnSpan="2" Grid.Row="1">
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="Имя пользователя: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                        <TextBox Width="200" FontSize="20" ></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="Пароль: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                        <PasswordBox Width="200" FontSize="20" ></PasswordBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="Электронная почта: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                        <TextBox Width="200" FontSize="20" ></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="Телефон: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                        <TextBox Width="200" FontSize="20" ></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="ФИО: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                        <TextBox Width="200" FontSize="20" ></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="Адрес: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
+                        <TextBox Width="200" FontSize="20" ></TextBox>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="Пароль: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
-                    <PasswordBox Width="200" FontSize="20" ></PasswordBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="Электронная почта: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
-                    <TextBox Width="200" FontSize="20" ></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="Телефон: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
-                    <TextBox Width="200" FontSize="20" ></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="ФИО: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
-                    <TextBox Width="200" FontSize="20" ></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="Адрес: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Foreground="White"></TextBlock>
-                    <TextBox Width="200" FontSize="20" ></TextBox>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="Я согласен с пользовательским соглашением " VerticalAlignment="Stretch" FontSize="20" Foreground="White" TextWrapping="Wrap"/>
+                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <Button Content="Подтвердить" FontSize="20" Margin="0,5,0,5" Background="White"></Button>
                 </StackPanel>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,5">
-                    <TextBlock Text="Я согласен с пользовательским соглашением " VerticalAlignment="Stretch" FontSize="20" Foreground="White" TextWrapping="Wrap"/>
-                    <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                </StackPanel>
-                <Button Content="Подтвердить" FontSize="20" Margin="0,5,0,5" Background="White"></Button>
-            </StackPanel>
-        </StackPanel>
+        </Viewbox>
     </Grid>
 </UserControl>
