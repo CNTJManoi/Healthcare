@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Healthcare.WPF.Views.Pages.Main.Models"
              mc:Ignorable="d" >
     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Image Source="{Binding Path}" Width="100" Height="150" HorizontalAlignment="Center" Stretch="Fill" />
+        <Image Source="{Binding ImageOnScreen}" Width="100" Height="150" HorizontalAlignment="Center" Stretch="Fill" />
         <TextBlock Text="{Binding Specialization}" HorizontalAlignment="Center"/>
         <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
         <TextBlock Text="{Binding Time}" HorizontalAlignment="Center"/>
