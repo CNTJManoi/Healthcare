@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Healthcare.WPF.Views.Pages.Main.Models"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" 
+             FontFamily="Georgia">
     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Image Source="{Binding ImageOnScreen}" Width="100" Height="150" HorizontalAlignment="Center" Stretch="Fill" />
+        <Image Source="{Binding ImageOnScreen}" Width="70" Height="100" HorizontalAlignment="Center" Stretch="Fill" />
         <TextBlock Text="{Binding Specialization}" HorizontalAlignment="Center"/>
         <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
         <TextBlock Text="{Binding Time}" HorizontalAlignment="Center"/>

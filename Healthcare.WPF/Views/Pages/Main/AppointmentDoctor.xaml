@@ -5,19 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Healthcare.WPF.Views.Pages.Main"
       xmlns:models="clr-namespace:Healthcare.WPF.Views.Pages.Main.Models"
-      xmlns:localModel="clr-namespace:Healthcare.WPF.ViewModels.Models"
+      xmlns:localModel="clr-namespace:Healthcare.WPF.ViewModels.MainModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
       FontFamily="Georgia">
-<UserControl.Resources>
-    <DataTemplate DataType="{x:Type localModel:DoctorViewModel}">
-        <models:DoctorModel/>
-    </DataTemplate>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type localModel:DoctorViewModel}">
+            <models:DoctorModel/>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid x:Name="grid" Background="White">
         <StackPanel x:Name="stackPanel" VerticalAlignment="Top" Margin="10,10,10,31" HorizontalAlignment="Left">
-            <TextBlock Text="Выберите доктора" Margin="10,10,10,10" FontSize="20"/>
-            <ListBox ItemsSource="{Binding ListBoxItems}" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" >
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <TextBlock Text="Выберите отделение: " Margin="0,0,0,0" FontSize="20"></TextBlock>
+                <ComboBox SelectedIndex="{Binding SelectedDepartment}" ItemsSource="{Binding DepartmentList}" HorizontalAlignment="Center" VerticalAlignment="Center"></ComboBox>
+            </StackPanel>
+            <TextBlock Text="Выберите доктора:" Margin="10,5,10,5" FontSize="20"/>
+            <ListBox ItemsSource="{Binding ListBoxItems}" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" Margin="0,5,0,5" Width="600" >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
@@ -31,6 +34,17 @@
 
                 </ListBox.Resources>
             </ListBox>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <TextBlock Text="Выберите дату записи: " Margin="36,10,10,10" FontSize="20"></TextBlock>
+                <DatePicker x:Name="datePicker" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></DatePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <TextBlock Text="Введите желаемое время: " Margin="10,10,10,10" FontSize="20"></TextBlock>
+                <TextBox HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=datePicker, Mode=OneWay}"></TextBox>
+            </StackPanel>
+            <Button>
+                <TextBlock Text="Записаться" FontSize="20"></TextBlock>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

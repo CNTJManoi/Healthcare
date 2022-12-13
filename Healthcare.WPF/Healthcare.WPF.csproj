@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Healthcare.Database\Healthcare.Database.csproj" />
+    <ProjectReference Include="..\Healthcare.Json\Healthcare.Json.csproj" />
+    <ProjectReference Include="..\Healthcare\Healthcare.Logic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Icons\Home.png" />
     <Resource Include="Icons\Profile.png" />
     <Resource Include="Icons\RecordDoctor.png" />

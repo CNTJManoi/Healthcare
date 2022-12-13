@@ -6,14 +6,18 @@
              xmlns:local="clr-namespace:Healthcare.WPF.Views.Pages"
              xmlns:localModel="clr-namespace:Healthcare.WPF.ViewModels"
              xmlns:main="clr-namespace:Healthcare.WPF.Views.Pages.Main"
+             xmlns:mainModels="clr-namespace:Healthcare.WPF.ViewModels.MainModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" FontFamily="Georgia">
     <UserControl.Resources>
         <Style TargetType="Menu">
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
-        <DataTemplate DataType="{x:Type localModel:AppointmentDoctorViewModel}">
+        <DataTemplate DataType="{x:Type mainModels:AppointmentDoctorViewModel}">
             <main:AppointmentDoctor/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mainModels:MainInformationViewModel}">
+            <main:MainInformationView/>
         </DataTemplate>
     </UserControl.Resources>
 
@@ -37,7 +41,7 @@
                         <Setter Property="Margin" Value="0,5,0,5"></Setter>
                     </Style>
                 </Menu.Resources>
-                <MenuItem HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
+                <MenuItem Command="{Binding MainCommand}" HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
                     <MenuItem.Header>
                         <DockPanel LastChildFill="True">
                             <Image Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Icons/Home.png"  />
