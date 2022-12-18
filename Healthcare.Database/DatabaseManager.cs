@@ -35,7 +35,7 @@ public class DatabaseManager
                          .Include(x => x.RegisteredPatient)
                          .Include(x => x.ResponsibleDoctor)
                          .ToList())
-                hp.ReceptionHospital.RegistrationRecord(record);
+                hp.ReceptionHospital.RegisterRecord(record);
 
             return hp;
         }

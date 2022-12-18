@@ -2,12 +2,12 @@
 
 public class Patient : IPeople
 {
-    public Patient(string surname, string name, string Patronymic, string address, Guid id)
+    public Patient(string surname, string name, string patronymic, string address, Guid id)
     {
         Id = id;
         Surname = surname ?? throw new ArgumentNullException(nameof(surname));
         Name = name ?? throw new ArgumentNullException(nameof(name));
-        Patronymic = Patronymic ?? throw new ArgumentNullException(nameof(Patronymic));
+        Patronymic = patronymic ?? throw new ArgumentNullException(nameof(patronymic));
         Address = address ?? throw new ArgumentNullException(nameof(address));
     }
 

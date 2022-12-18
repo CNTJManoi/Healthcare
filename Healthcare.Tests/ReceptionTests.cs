@@ -16,7 +16,7 @@ public class ReceptionTests
         // Arrange
         var sut = _builder.BuildHospital();
         // Act
-        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+        var status = sut.ReceptionHospital.RegisterRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
             sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
 
@@ -30,7 +30,7 @@ public class ReceptionTests
         // Arrange
         var sut = _builder.BuildHospital();
         // Act
-        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+        var status = sut.ReceptionHospital.RegisterRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
             sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 04, 15, 0),
             sut.Buildings.ToList()[0]);
 
@@ -43,11 +43,11 @@ public class ReceptionTests
     {
         // Arrange
         var sut = _builder.BuildHospital();
-        sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+        sut.ReceptionHospital.RegisterRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
             sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
         // Act
-        var status = sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+        var status = sut.ReceptionHospital.RegisterRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
             sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
 
@@ -60,11 +60,11 @@ public class ReceptionTests
     {
         // Arrange
         var sut = _builder.BuildHospital();
-        sut.ReceptionHospital.RegistrationRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
+        sut.ReceptionHospital.RegisterRecord(sut.Buildings.ToList()[0].Doctors.ToList()[0],
             sut.Buildings.ToList()[0].Patients.ToList()[0], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]);
         // Act + Assert
-        Assert.Throws<ArgumentNullException>(() => sut.ReceptionHospital.RegistrationRecord(
+        Assert.Throws<ArgumentNullException>(() => sut.ReceptionHospital.RegisterRecord(
             sut.Buildings.ToList()[0].Doctors.ToList()[1],
             sut.Buildings.ToList()[0].Patients.ToList()[1], new DateTime(2022, 10, 27, 10, 15, 0),
             sut.Buildings.ToList()[0]));
