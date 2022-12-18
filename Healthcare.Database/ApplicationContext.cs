@@ -38,7 +38,7 @@ public class ApplicationContext : DbContext
                 b.Property(b => b.SpecializationDoctor);
                 b.Property(b => b.Surname);
                 b.Property(b => b.Name);
-                b.Property(b => b.Society);
+                b.Property(b => b.Patronymic);
                 b.Property(b => b.Address);
             });
 
@@ -48,7 +48,7 @@ public class ApplicationContext : DbContext
                 b.HasKey("Id");
                 b.Property(b => b.Surname);
                 b.Property(b => b.Name);
-                b.Property(b => b.Society);
+                b.Property(b => b.Patronymic);
                 b.Property(b => b.Address);
             });
 

@@ -2,12 +2,12 @@
 
 public class Patient : IPeople
 {
-    public Patient(string surname, string name, string society, string address, Guid id)
+    public Patient(string surname, string name, string Patronymic, string address, Guid id)
     {
         Id = id;
         Surname = surname ?? throw new ArgumentNullException(nameof(surname));
         Name = name ?? throw new ArgumentNullException(nameof(name));
-        Society = society ?? throw new ArgumentNullException(nameof(society));
+        Patronymic = Patronymic ?? throw new ArgumentNullException(nameof(Patronymic));
         Address = address ?? throw new ArgumentNullException(nameof(address));
     }
 
@@ -17,24 +17,24 @@ public class Patient : IPeople
     public Guid Id { get; }
 
     /// <summary>
-    ///     Фамилия доктора
+    ///     Фамилия
     /// </summary>
     public string Surname { get; }
 
     /// <summary>
-    ///     Имя доктора
+    ///     Имя
     /// </summary>
     public string Name { get; }
 
     /// <summary>
-    ///     Отчество доктора
+    ///     Отчество
     /// </summary>
-    public string Society { get; }
+    public string Patronymic { get; }
 
     /// <summary>
-    ///     Фамилия, имя и отчество доктора
+    ///     Фамилия, имя и отчество
     /// </summary>
-    public string FullName => Surname + " " + Name + " " + Society;
+    public string FullName => Surname + " " + Name + " " + Patronymic;
 
     /// <summary>
     ///     Адрес постоянного места жительства

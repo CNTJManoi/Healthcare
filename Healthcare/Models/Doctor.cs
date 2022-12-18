@@ -2,14 +2,14 @@
 
 public class Doctor : IPeople
 {
-    public Doctor(string surname, string name, string society, string address, string diplom,
+    public Doctor(string surname, string name, string Patronymic, string address, string diplom,
         TypeDoctor specializationDoctor, string beginWorkTime,
         string endWorkTime)
     {
         Id = new Guid();
         Surname = surname ?? throw new ArgumentNullException(nameof(surname));
         Name = name ?? throw new ArgumentNullException(nameof(name));
-        Society = society ?? throw new ArgumentNullException(nameof(society));
+        Patronymic = Patronymic ?? throw new ArgumentNullException(nameof(Patronymic));
         Address = address ?? throw new ArgumentNullException(nameof(address));
         Diplom = diplom ?? throw new ArgumentNullException(nameof(diplom));
         SpecializationDoctor = specializationDoctor;
@@ -33,7 +33,7 @@ public class Doctor : IPeople
     public string EndWorkTime { get; set; }
 
     /// <summary>
-    ///     Специализация доктора
+    ///     Специализация
     /// </summary>
     public TypeDoctor SpecializationDoctor { get; set; }
 
@@ -43,24 +43,24 @@ public class Doctor : IPeople
     public Guid Id { get; }
 
     /// <summary>
-    ///     Фамилия доктора
+    ///     Фамилия
     /// </summary>
     public string Surname { get; }
 
     /// <summary>
-    ///     Имя доктора
+    ///     Имя
     /// </summary>
     public string Name { get; }
 
     /// <summary>
-    ///     Отчество доктора
+    ///     Отчество
     /// </summary>
-    public string Society { get; }
+    public string Patronymic { get; }
 
     /// <summary>
-    ///     Фамилия, имя и отчество доктора
+    ///     Фамилия, имя и отчество
     /// </summary>
-    public string FullName => Surname + " " + Name + " " + Society;
+    public string FullName => Surname + " " + Name + " " + Patronymic;
 
     /// <summary>
     ///     Адрес постоянного места жительства

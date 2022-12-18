@@ -66,7 +66,7 @@ namespace Healthcare.Menu.Migrations
                     SpecializationDoctor = table.Column<int>(type: "int", nullable: false),
                     Surname = table.Column<string>(type: "longtext", nullable: false),
                     Name = table.Column<string>(type: "longtext", nullable: false),
-                    Society = table.Column<string>(type: "longtext", nullable: false),
+                    Patronymic = table.Column<string>(type: "longtext", nullable: false),
                     Address = table.Column<string>(type: "longtext", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "char(36)", nullable: true)
                 },
@@ -87,7 +87,7 @@ namespace Healthcare.Menu.Migrations
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
                     Surname = table.Column<string>(type: "longtext", nullable: false),
                     Name = table.Column<string>(type: "longtext", nullable: false),
-                    Society = table.Column<string>(type: "longtext", nullable: false),
+                    Patronymic = table.Column<string>(type: "longtext", nullable: false),
                     Address = table.Column<string>(type: "longtext", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "char(36)", nullable: true)
                 },

@@ -63,7 +63,7 @@ namespace Healthcare.Menu.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Society")
+                    b.Property<string>("Patronymic")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -98,7 +98,7 @@ namespace Healthcare.Menu.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Society")
+                    b.Property<string>("Patronymic")
                         .IsRequired()
                         .HasColumnType("longtext");
 

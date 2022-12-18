@@ -7,7 +7,9 @@ namespace Healthcare.Logic.Reception;
 public class Reception
 {
     private readonly List<Record> _bookRecords;
-
+    /// <summary>
+    /// Приемная больницы
+    /// </summary>
     public Reception()
     {
         _bookRecords = new List<Record>();
@@ -19,58 +21,50 @@ public class Reception
     /// </summary>
     public Guid Id { get; }
 
-    /// <summary>
-    ///     Исчисляемый список записей к врачам
-    /// </summary>
     public IEnumerable<Record> BookRecords => _bookRecords;
 
     /// <summary>
     ///     Осуществить запись в книгу
     /// </summary>
-    /// <param name="doctor">Экземпляр класса доктора</param>
-    /// <param name="patient">Экземпляр класса пациент</param>
-    /// <param name="time">Время записи</param>
-    /// <param name="department">Отделение</param>
-    /// <returns>Статус заявки</returns>
-    public TypeStatus RegistrationRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
+    /// <param name="doctor"></param>
+    /// <param name="patient"></param>
+    /// <param name="time"></param>
+    /// <param name="department"></param>
+    /// <returns></returns>
+    public TypeStatus RegisterRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
     {
-        var resultCheck = CheckParametersRecord(doctor, patient, time, department);
+        var resultCheck = VerifyParametersRecord(doctor, patient, time, department);
         if (resultCheck == TypeStatus.Successfully)
         {
             var record = department.AddRecord(doctor, patient, time);
-            if (record != null)
-            {
-                _bookRecords.Add(record);
-                return TypeStatus.Successfully;
-            }
-
-            return TypeStatus.OfficesBusy;
+            _bookRecords.Add(record);
+            return TypeStatus.Successfully;
         }
 
         return resultCheck;
     }
 
-    private TypeStatus CheckParametersRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
+    private TypeStatus VerifyParametersRecord(Doctor doctor, Patient patient, DateTime time, IManageData department)
     {
-        if (!TestTime(time) || !CheckTimeDoctor(doctor, time)) return TypeStatus.ErrorTime;
-        if (CheckRecordInBook(doctor, patient, time)) return TypeStatus.DoctorBusy;
+        if (!TimeIsEnteredCorrectly(time) || !DoctorIsWorkingAtThisTime(doctor, time)) return TypeStatus.ErrorTime;
+        if (EntriesInBookIsMissing(doctor, patient, time)) return TypeStatus.DoctorBusy;
         return TypeStatus.Successfully;
     }
 
-    private bool TestTime(DateTime time)
+    private bool TimeIsEnteredCorrectly(DateTime time)
     {
         if (time.Minute % 15 != 0) return false;
         return true;
     }
 
-    private bool CheckTimeDoctor(Doctor doctor, DateTime time)
+    private bool DoctorIsWorkingAtThisTime(Doctor doctor, DateTime time)
     {
         if (time.Hour > int.Parse(doctor.EndWorkTime) || time.Hour < int.Parse(doctor.BeginWorkTime))
             return false;
         return true;
     }
 
-    private bool CheckRecordInBook(Doctor doctor, Patient patient, DateTime time)
+    private bool EntriesInBookIsMissing(Doctor doctor, Patient patient, DateTime time)
     {
         if (!_bookRecords.Any(x => x.ResponsibleDoctor ==
                 doctor && x.RegisteredPatient == patient)
@@ -84,8 +78,8 @@ public class Reception
     /// <summary>
     ///     Внести уже существующую запись
     /// </summary>
-    /// <param name="record">Экземпляр класса записи</param>
-    public void RegistrationRecord(Record record)
+    /// <param name="record"></param>
+    public void RegisterRecord(Record record)
     {
         _bookRecords.Add(record);
     }

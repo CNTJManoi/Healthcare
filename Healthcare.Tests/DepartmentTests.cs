@@ -108,41 +108,4 @@ public class DepartmentTests
         // Assert
         Assert.Contains(patient, sut.Patients);
     }
-
-    [Fact]
-    public void DepartmentDismissDoctor()
-    {
-        // Arrange
-        Guid idDoctor = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
-        var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
-            , "999875", TypeDoctor.Surgeon, "08", "15");
-        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
-            , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
-            TypeDepartment.Therapeutic, idDoctor);
-        sut.AddDoctor(doctor);
-
-        // Act
-        sut.DismissDoctor(doctor);
-
-        // Assert
-        Assert.DoesNotContain(doctor, sut.Doctors);
-    }
-
-    [Fact]
-    public void DepartmentDischargePatient()
-    {
-        // Arrange
-        Guid idSut = new Guid(6, 12, 22, new byte[] { 2, 3, 4, 5, 6, 7, 8, 9 });
-        Patient patient = new("Владислав", "Семен", "Александрович", "Дуси Ковальчук 101 кв 105", Guid.NewGuid());
-        IDepartment sut = new Department(new List<Cabinet>(), new List<Doctor>(), new List<Patient>()
-            , "Поликлиника <Мертвый анархист>", "Свердловская 10/1", 1,
-            TypeDepartment.Therapeutic, idSut);
-        sut.AddPatient(patient);
-
-        // Act
-        sut.DischargePatient(patient);
-
-        // Assert
-        Assert.DoesNotContain(patient, sut.Patients);
-    }
 }

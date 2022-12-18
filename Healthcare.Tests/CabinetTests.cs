@@ -8,7 +8,7 @@ namespace Healthcare.Logic.Tests;
 public class CabinetTests
 {
     [Fact]
-    public void TestCreatingAccountWithImpossibleNumber()
+    public void TestCreatingCabinetWithNumberLessThanZero()
     {
         // Arrange
         Guid id = new Guid(3,10,20, new byte[]{1,2,3,4,5,6,7,8});
@@ -47,7 +47,7 @@ public class CabinetTests
         // Act
         var result = sut.CabinetIsBusy(doctor);
 
-        // Assert
+        // Assert   
         Assert.False(result);
     }
 
@@ -61,7 +61,7 @@ public class CabinetTests
         var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, id);
 
         // Act
-        sut.EnterCabient(doctor);
+        sut.EnterCabinet(doctor);
 
         // Assert
         Assert.False(sut.CabinetIsBusy(doctor));
@@ -78,7 +78,7 @@ public class CabinetTests
         var sut = new Cabinet(TypeDoctor.Surgeon, 101, doctor, null, id);
 
         // Act
-        sut.EnterCabient(patient);
+        sut.EnterCabinet(patient);
 
         // Assert
         Assert.False(sut.CabinetIsBusy(patient));
@@ -92,10 +92,10 @@ public class CabinetTests
         var doctor = new Doctor("Жуков", "Артем", "Алексеевич", "Светлая 15"
             , "999875", TypeDoctor.Surgeon, "08", "15");
         var sut = new Cabinet(TypeDoctor.Surgeon, 101, null, null, id);
-        sut.EnterCabient(doctor);
+        sut.EnterCabinet(doctor);
 
         // Act
-        sut.EnterCabient(doctor);
+        sut.EnterCabinet(doctor);
 
         // Assert
         Assert.False(sut.CabinetIsBusy(doctor));
@@ -112,7 +112,7 @@ public class CabinetTests
 
         // Act+Assert
         Assert.Throws<ArgumentNullException>(
-            () => sut.EnterCabient(patient)
+            () => sut.EnterCabinet(patient)
         );
     }
 }

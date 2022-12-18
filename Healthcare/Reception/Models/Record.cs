@@ -10,7 +10,15 @@ public class Record
         Id = id;
         RecordingTime = recordingTime;
     }
-
+    /// <summary>
+    /// Модель записи определенного пациента к доктору в установленное время
+    /// </summary>
+    /// <param name="recordingTime"></param>
+    /// <param name="id"></param>
+    /// <param name="attachedCabinet"></param>
+    /// <param name="responsibleDoctor"></param>
+    /// <param name="registeredPatient"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public Record(DateTime recordingTime, Guid id,
         Cabinet attachedCabinet, Doctor responsibleDoctor, Patient registeredPatient) : this(recordingTime, id)
     {

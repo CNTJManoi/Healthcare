@@ -10,7 +10,16 @@ public class Department : IDepartment
     private readonly List<Cabinet> _cabinets;
     private readonly List<Doctor> _doctors;
     private readonly List<Patient> _patients;
-
+    /// <summary>
+    /// Отделение, находящиеся в больнице
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="address"></param>
+    /// <param name="numberOfFloors"></param>
+    /// <param name="typeDepartment"></param>
+    /// <param name="id"></param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="ArgumentNullException"></exception>
     private Department(string name,
         string address, int numberOfFloors,
         TypeDepartment typeDepartment, Guid id)
@@ -41,19 +50,12 @@ public class Department : IDepartment
     /// </summary>
     public Guid Id { get; }
 
-    /// <summary>
-    ///     Исчисляемый список имеющихся кабинетов в отделении
-    /// </summary>
     public IEnumerable<Cabinet> Cabinets => _cabinets;
 
-    /// <summary>
-    ///     Исчисляемый список работающих докторов в отделении
-    /// </summary>
+
     public IEnumerable<Doctor> Doctors => _doctors;
 
-    /// <summary>
-    ///     Исчисляемый список пациентов в отделении
-    /// </summary>
+
     public IEnumerable<Patient> Patients => _patients;
 
     /// <summary>
@@ -79,7 +81,7 @@ public class Department : IDepartment
     /// <summary>
     ///     Добавить кабинет в отделение
     /// </summary>
-    /// <param name="cb">Экземпляр класса кабинета</param>
+    /// <param name="cb"></param>
     public void AddCabinet(Cabinet cb)
     {
         if (cb == null) throw new ArgumentNullException(nameof(cb));
@@ -89,7 +91,7 @@ public class Department : IDepartment
     /// <summary>
     ///     Добавить нового доктора в отделение
     /// </summary>
-    /// <param name="dt">Экземпляр класса доктора</param>
+    /// <param name="dt"></param>
     public void AddDoctor(Doctor dt)
     {
         if (dt == null) throw new ArgumentNullException(nameof(dt));
@@ -99,7 +101,7 @@ public class Department : IDepartment
     /// <summary>
     ///     Добавить нового пациента в отделение
     /// </summary>
-    /// <param name="pt">Экземплр класса пациента</param>
+    /// <param name="pt"></param>
     public void AddPatient(Patient pt)
     {
         if (pt == null) throw new ArgumentNullException(nameof(pt));
@@ -107,32 +109,12 @@ public class Department : IDepartment
     }
 
     /// <summary>
-    ///     Уволить доктора с отделения
-    /// </summary>
-    /// <param name="dt">Экземпляр класса доктора</param>
-    public void DismissDoctor(Doctor dt)
-    {
-        if (dt == null) throw new ArgumentNullException(nameof(dt));
-        _doctors.Remove(dt);
-    }
-
-    /// <summary>
-    ///     Выписать пациента с отделения
-    /// </summary>
-    /// <param name="pt">Экземпляр класса пациента</param>
-    public void DischargePatient(Patient pt)
-    {
-        if (pt == null) throw new ArgumentNullException(nameof(pt));
-        _patients.Remove(pt);
-    }
-
-    /// <summary>
     ///     Добавить новую запись к врачу в отделении
     /// </summary>
-    /// <param name="doctor">Экземпляр класса доктора</param>
-    /// <param name="pt">Экземпляр класса пациента</param>
-    /// <param name="dt">Время записи</param>
-    /// <returns>Экземпляр класса записи</returns>
+    /// <param name="doctor"></param>
+    /// <param name="pt"></param>
+    /// <param name="dt"></param>
+    /// <returns></returns>
     public Record AddRecord(Doctor doctor, Patient pt, DateTime dt)
     {
         if (doctor == null) throw new ArgumentNullException(nameof(doctor));
@@ -140,7 +122,7 @@ public class Department : IDepartment
         foreach (var cabinet in _cabinets.Where(cabinet =>
                      cabinet.TypeDoctor == doctor.SpecializationDoctor && !cabinet.CabinetIsBusy(doctor)))
         {
-            _cabinets[_cabinets.IndexOf(cabinet)].EnterCabient(doctor);
+            _cabinets[_cabinets.IndexOf(cabinet)].EnterCabinet(doctor);
             return new Record(dt, Guid.NewGuid(), cabinet, doctor, pt);
         }
 

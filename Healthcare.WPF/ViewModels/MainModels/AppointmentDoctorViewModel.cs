@@ -47,7 +47,7 @@ namespace Healthcare.WPF.ViewModels.MainModels
                 foreach (var doctor in departments.ToList()[SelectedDepartment].Doctors)
                 {
                     ListBoxItems.Add(new DoctorViewModel(
-                        "https://www.meme-arsenal.com/memes/17546868fd82d11133e23d38fe7e8d5e.jpg", 
+                        "https://www.meme-arsenal.com/memes/b31d000afd9ed4c203b38818f28285b7.jpg", 
                         _stringCreator.GetDoctorSpecilialization(doctor), 
                         doctor.FullName, 
                         doctor.BeginWorkTime + " - " + doctor.EndWorkTime));

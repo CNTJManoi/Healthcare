@@ -11,7 +11,14 @@ public class Cabinet
         TypeDoctor = typeDoctor;
         Number = number;
     }
-
+    /// <summary>
+    /// Кабинет в отделении больницы
+    /// </summary>
+    /// <param name="typeDoctor"></param>
+    /// <param name="number"></param>
+    /// <param name="attachedDoctor"></param>
+    /// <param name="enteringPatient"></param>
+    /// <param name="id"></param>
     public Cabinet(TypeDoctor typeDoctor, int number, Doctor attachedDoctor, Patient enteringPatient, Guid id) : this(
         typeDoctor, number, id)
     {
@@ -49,7 +56,7 @@ public class Cabinet
     ///     Прикрепить доктора к кабинету
     /// </summary>
     /// <param name="dt"></param>
-    public void EnterCabient(Doctor dt)
+    public void EnterCabinet(Doctor dt)
     {
         AttachedDoctor = dt ?? throw new ArgumentNullException(nameof(dt));
     }
@@ -58,16 +65,16 @@ public class Cabinet
     ///     Занять кабинет пациентом
     /// </summary>
     /// <param name="dt"></param>
-    public void EnterCabient(Patient patient)
+    public void EnterCabinet(Patient patient)
     {
         if(AttachedDoctor == null) throw new ArgumentNullException(nameof(AttachedDoctor));
         EnteringPatient = patient;
     }
 
     /// <summary>
-    ///     Занят ли кабинет
+    ///     Проверка занятости кабинета доктором
     /// </summary>
-    /// <param name="dt">Экземпляр класса возможного доктора в кабинете</param>
+    /// <param name="dt"></param>
     /// <returns>bool - true если занят иначе false</returns>
     public bool CabinetIsBusy(Doctor dt)
     {
@@ -77,9 +84,9 @@ public class Cabinet
     }
 
     /// <summary>
-    ///     Занят ли кабинет
+    ///     Проверка занятости кабинета пациентом
     /// </summary>
-    /// <param name="dt">Экземпляр класса возможного пациента в кабинете</param>
+    /// <param name="dt"></param>
     /// <returns>bool - true если занят иначе false</returns>
     public bool CabinetIsBusy(Patient patient)
     {

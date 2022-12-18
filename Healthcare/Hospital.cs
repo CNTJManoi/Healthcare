@@ -6,7 +6,12 @@ namespace Healthcare.Logic;
 public class Hospital
 {
     private readonly List<IDepartment> _buildings;
-
+    /// <summary>
+    /// Больница
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="name"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public Hospital(Guid id, string name)
     {
         Id = id;
@@ -20,42 +25,39 @@ public class Hospital
     /// </summary>
     public Reception.Reception ReceptionHospital { get; }
 
-    /// <summary>
-    ///     Перечисляемый список отделений в больнице
-    /// </summary>
     public IEnumerable<IDepartment> Buildings => _buildings;
 
     public Guid Id { get; }
 
     /// <summary>
-    ///     Наименование больницы
+    ///     Наименование
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    ///     Добавить отделение в больницу
+    ///     Добавить отделение
     /// </summary>
-    /// <param name="department">ЭЭкземпляр класса отделения</param>
+    /// <param name="department"></param>
     public void AddDepartment(IDepartment department)
     {
         _buildings.Add(department);
     }
 
     /// <summary>
-    ///     Добавить пациента в определенное отделение больницы
+    ///     Добавить пациента в определенное отделение
     /// </summary>
-    /// <param name="currentPatient">Экземпляр класса пациента</param>
-    /// <param name="numberDepartment">Номер отделения больницы</param>
+    /// <param name="currentPatient"></param>
+    /// <param name="numberDepartment">Номер отделения</param>
     public void AddPatient(Patient currentPatient, int numberDepartment)
     {
         _buildings[numberDepartment - 1].AddPatient(currentPatient);
     }
 
     /// <summary>
-    ///     Добавить доктора в определенное отделение больницы
+    ///     Добавить доктора в определенное отделение
     /// </summary>
-    /// <param name="dt">Экземпляр класса доктора</param>
-    /// <param name="numberDepartment">Номер отделения больницы</param>
+    /// <param name="dt"></param>
+    /// <param name="numberDepartment">Номер отделения</param>
     public void AddDoctor(Doctor dt, int numberDepartment)
     {
         _buildings[numberDepartment - 1].AddDoctor(dt);

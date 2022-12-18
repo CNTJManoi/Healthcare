@@ -56,7 +56,7 @@ public class ReceptionTests
     }
 
     [Fact]
-    public void ReceptionCheckRegistrationRecordWithOfficesBusy()
+        public void ReceptionCheckRegistrationRecordWithOfficesBusy()
     {
         // Arrange
         var sut = _builder.BuildHospital();

@@ -102,33 +102,66 @@ internal class HospitalMenu
 
     private void Enroll()
     {
-        PrintMessage("Выберите отделение:");
-        PrintMessage(HospitalInfo.GetDepartmentsInfo());
-        PrintMessage("\n0 для выхода в основное меню..");
-        var choose = ChooseOption();
-        while (!(choose <= Hospital.Buildings.ToList().Count() && choose >= 0)) choose = ChooseOption();
-        if (choose == 0) return;
-        var numberDepartment = choose;
+        var status = CarryOutRegistration();
+        NotifyAboutRegistration(status);
+    }
+
+    private TypeStatus CarryOutRegistration()
+    {
+        var numberDepartment = GetEnteredDepartment();
+
+        var numberDoctor = GetEnteredDoctorDepartment(numberDepartment);
+
+        var selectedDoctor = Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.ToList()[numberDoctor - 1];
+
+        var time = GetEnteredTime();
+
+        var result = Hospital.ReceptionHospital.RegisterRecord(selectedDoctor, CurrentPatient, time,
+            Hospital.Buildings.ToList()[numberDepartment - 1]);
+        if(result == TypeStatus.Successfully) 
+            EnterDataAboutRecordInDatabase(CurrentPatient, numberDepartment);
+        return result;
+    }
+    private int GetEnteredDoctorDepartment(int numberDepartment)
+    {
+        int choose;
         PrintMessage("Выберите врача отделения:");
-        PrintMessage(HospitalInfo.GetDoctorsDepartmentList(choose));
+        PrintMessage(HospitalInfo.GetDoctorsDepartmentList(numberDepartment));
         PrintMessage("\n0 для выхода в основное меню..");
         choose = ChooseOption();
         while (!(choose <= Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.Count() && choose >= 0))
             choose = ChooseOption();
-        if (choose == 0) return;
-        var selectedDoctor = Hospital.Buildings.ToList()[numberDepartment - 1].Doctors.ToList()[choose - 1];
+        if (choose == 0) return -1;
+        return choose;
+    }
+
+    private int GetEnteredDepartment()
+    {
+        PrintMessage("Выберите отделение:");
+        PrintMessage(HospitalInfo.GetDepartmentsInfo());
+        PrintMessage("\n0 для выхода в основное меню..");
+        var choose = ChooseOption();
+        while (!(choose <= Hospital.Buildings.ToList().Count() && choose >= 0))
+            choose = ChooseOption();
+        if (choose == 0) return 0;
+        return choose;
+    }
+
+    private DateTime GetEnteredTime()
+    {
         PrintMessage("Введите время (часы): ");
         var timeH = ChooseOption(0, 24);
         PrintMessage("Введите время (минуты): ");
         var timeM = ChooseOption(0, 60);
         var dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, timeH, timeM, 0);
-        var result = Hospital.ReceptionHospital.RegistrationRecord(selectedDoctor, CurrentPatient, dt,
-            Hospital.Buildings.ToList()[numberDepartment - 1]);
-        switch (result)
+        return dt;
+    }
+
+    private void NotifyAboutRegistration(TypeStatus status)
+    {
+        switch (status)
         {
             case TypeStatus.Successfully:
-                Hospital.AddPatient(CurrentPatient, numberDepartment);
-                if (DatabaseManager != null) DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
                 PrintMessage("Запись создана!");
                 break;
             case TypeStatus.DoctorBusy:
@@ -145,12 +178,16 @@ internal class HospitalMenu
                 break;
         }
     }
-
     private void PrintMessage(string text)
     {
         Console.WriteLine(text);
     }
 
+    private void EnterDataAboutRecordInDatabase(Patient patient, int numberDepartment)
+    {
+        Hospital.AddPatient(patient, numberDepartment);
+        if (DatabaseManager != null) DatabaseManager.SaveRecord(Hospital.ReceptionHospital.BookRecords.Last());
+    }
     private void WriteInFile()
     {
         Annunciator.Notify(JsonConverter<List<Record>>.SerializeObject(Hospital.ReceptionHospital.BookRecords.ToList()),
