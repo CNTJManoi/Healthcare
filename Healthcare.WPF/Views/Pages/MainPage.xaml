@@ -19,6 +19,12 @@
         <DataTemplate DataType="{x:Type mainModels:MainInformationViewModel}">
             <main:MainInformationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mainModels:InfoViewModel}">
+            <main:InfoView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mainModels:ProfileViewModel}">
+            <main:ProfileUserView/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>
@@ -26,9 +32,9 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="#FF2D323E">
-            <TextBlock Text="Пункты меню" Foreground="#FF616B77" HorizontalAlignment="Center" Margin="0,10,0,10"></TextBlock>
-            <Menu Name="MenuLeft"  Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" >
+        <DockPanel Grid.Column="0" Background="#FF2D323E">
+            <TextBlock Text="Пункты меню" Foreground="#FF616B77" HorizontalAlignment="Center" Margin="0,10,0,10" DockPanel.Dock="Top"></TextBlock>
+            <Menu Name="MenuLeft"  Background="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Stretch" FlowDirection="LeftToRight" Grid.IsSharedSizeScope="True" DockPanel.Dock="Top" >
                 <Menu.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
@@ -57,7 +63,7 @@
                         </DockPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
+                <MenuItem Command="{Binding InfoCommand}" HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
                     <MenuItem.Header>
                         <DockPanel LastChildFill="True">
                             <Image Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Icons/Info.png"  />
@@ -65,19 +71,11 @@
                         </DockPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
+                <MenuItem Command="{Binding ProfileCommand}" HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
                     <MenuItem.Header>
                         <DockPanel LastChildFill="True">
                             <Image Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Icons/Profile.png"  />
                             <TextBlock Text="Профиль"></TextBlock>
-                        </DockPanel>
-                    </MenuItem.Header>
-                </MenuItem>
-                <MenuItem HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center">
-                    <MenuItem.Header>
-                        <DockPanel LastChildFill="True">
-                            <Image Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Icons/Home.png"  />
-                            <TextBlock Text="Справка"></TextBlock>
                         </DockPanel>
                     </MenuItem.Header>
                 </MenuItem>
@@ -90,7 +88,8 @@
                     </MenuItem.Header>
                 </MenuItem>
             </Menu>
-        </StackPanel>
+            <TextBlock Foreground="#FF616B77" Text="Версия 0.5Alpha" HorizontalAlignment="Center" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="0,0,0,10"></TextBlock>
+        </DockPanel>
         <Grid x:Name="grid" Grid.Column="1">
             <Viewbox Stretch="Fill" Grid.Column="1">
                 <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" Opacity="{Binding OpacityValue}" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}"/>

@@ -17,7 +17,7 @@ public class DatabaseManager
     /// <summary>
     ///     Загрузить данные с базы данных
     /// </summary>
-    /// <returns>Экземпляр класса больницы с загруженными данными</returns>
+    /// <returns></returns>
     public Hospital LoadDatabase()
     {
         try
@@ -48,7 +48,7 @@ public class DatabaseManager
     /// <summary>
     ///     Записать запись в базу данных
     /// </summary>
-    /// <param name="record">Экземпляр класса записи</param>
+    /// <param name="record"></param>
     public void SaveRecord(Record record)
     {
         if (record == null) throw new ArgumentNullException(nameof(record));

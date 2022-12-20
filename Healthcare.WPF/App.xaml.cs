@@ -6,6 +6,7 @@ using System.Linq;
 using System.Media;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using Healthcare.WPF.ViewModels;
 
 namespace Healthcare.WPF
@@ -16,14 +17,22 @@ namespace Healthcare.WPF
     public partial class App : Application
     {
         public static NavigationViewModel NavigationViewModel { get; set; }
-        private SoundPlayer MusicPlayer { get; set; }
+        public static MediaPlayer MusicPlayer { get; private set; }
 
         public App()
         {
-            MusicPlayer = new SoundPlayer();
-            MusicPlayer.SoundLocation = @"D:\music.mp3";
-            MusicPlayer.Load();
+            MusicPlayer = new MediaPlayer();
+            MusicPlayer.Open(new Uri(@"D:\music.wav"));
             MusicPlayer.Play();
+        }
+
+        public static void OffMusic()
+        {
+            MusicPlayer.Volume = 0;
+        }
+        public static void OnMusic()
+        {
+            MusicPlayer.Volume = 1;
         }
     }
 }
