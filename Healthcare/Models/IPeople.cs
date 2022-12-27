@@ -7,5 +7,5 @@ internal interface IPeople
     string Name { get; }
     string Patronymic { get; }
     string FullName { get; }
-    string Address { get; set; }
+    string Address { get; }
 }

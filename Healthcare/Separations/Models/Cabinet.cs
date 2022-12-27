@@ -40,7 +40,7 @@ public class Cabinet
     /// <summary>
     ///     Тип кабинета
     /// </summary>
-    public TypeDoctor TypeDoctor { get; set; }
+    public TypeDoctor TypeDoctor { get; }
 
     /// <summary>
     ///     Вошедший пациент в кабинет

@@ -16,7 +16,9 @@
     <Grid x:Name="grid" Background="White">
         <StackPanel x:Name="stackPanel" VerticalAlignment="Top" Margin="10,10,10,31" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
-                <TextBlock Text="Выберите отделение: " Margin="0,0,0,0" FontSize="20"></TextBlock>
+                <TextBlock Text="Выберите отделение: " 
+                           Margin="0,0,0,0" 
+                           FontSize="20"/>
                 <ComboBox SelectedIndex="{Binding SelectedDepartment}" ItemsSource="{Binding DepartmentList}" HorizontalAlignment="Center" VerticalAlignment="Center"></ComboBox>
             </StackPanel>
             <TextBlock Text="Выберите доктора:" Margin="10,5,10,5" FontSize="20"/>

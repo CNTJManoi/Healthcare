@@ -32,7 +32,7 @@ public class Hospital
     /// <summary>
     ///     Наименование
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; }
 
     /// <summary>
     ///     Добавить отделение

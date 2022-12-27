@@ -61,7 +61,7 @@ public class Department : IDepartment
     /// <summary>
     ///     Наименование отделения
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; }
 
     /// <summary>
     ///     Адрес отделения
@@ -71,12 +71,12 @@ public class Department : IDepartment
     /// <summary>
     ///     Количество этажей в отделении
     /// </summary>
-    public int NumberOfFloors { get; set; }
+    public int NumberOfFloors { get; }
 
     /// <summary>
     ///     Тип отделения
     /// </summary>
-    public TypeDepartment TypeDepartment { get; set; }
+    public TypeDepartment TypeDepartment { get; }
 
     /// <summary>
     ///     Добавить кабинет в отделение

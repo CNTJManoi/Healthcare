@@ -39,5 +39,5 @@ public class Patient : IPeople
     /// <summary>
     ///     Адрес постоянного места жительства
     /// </summary>
-    public string Address { get; set; }
+    public string Address { get; }
 }

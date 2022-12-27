@@ -9,8 +9,8 @@ public interface IDataDepartment
     public IEnumerable<Cabinet>? Cabinets { get; }
     public IEnumerable<Doctor>? Doctors { get; }
     public IEnumerable<Patient>? Patients { get; }
-    string Name { get; set; }
+    string Name { get; }
     string Address { get; }
-    int NumberOfFloors { get; set; }
-    public TypeDepartment TypeDepartment { get; set; }
+    int NumberOfFloors { get; }
+    public TypeDepartment TypeDepartment { get; }
 }
